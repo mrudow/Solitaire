@@ -8,9 +8,8 @@ class Deck:
 
     
 #mdc=move deck card
-    self.deck[0]=card
     def mdc(self, card, dest):
-
+      self.deck[0]=card
       if dest==(stack0|stack1|stack2|stack3|stack4|stack5|stack6):
           if add_card_to_stack(dest, card)==1:
               add_card_to_stack(dest, card)
