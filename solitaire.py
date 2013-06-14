@@ -4,7 +4,7 @@ class Deck:
     #ndc=number of deck cards
     def __init__(self, ndc=24):
       self.ndc=ndc
-      self.deck = {0:a, 1:b, 2:c, 3:d, 4:e, 5:f, 6:g, 7:h, 8:i, 9:j, 10:k, 11:l, 12:m, 13:n, 14:0, 15:p, 16:q, 17:r, 18:s, 19:t, 20:u, 21:v, 22:w, 23:x}
+      self.deck = {0:a, 1:b, 2:c, 3:d, 4:e, 5:f, 6:g, 7:h, 8:i, 9:j, 10:k, 11:l, 12:m, 13:n, 14:0, 15:p, 16:q, 17:r, 18:s, 19:t, 20:u, 21:v, 22:w, 23:x, 24:y, 25:z, 26:aa, 27:ab, 28:ac, 29:ad, 30:ae, 31:af, 32:ag, 33:ah, 34:ai, 35:aj, 36:ak, 37:al, 38:am, 39:an, 40:ao, 41:ap, 42:aq, 43:ar, 44:at, 45:au, 46:av, 47:aw, 48:ax, 49:ay, 50:az, 51:azz}
 
     
 #mdc=move deck card
