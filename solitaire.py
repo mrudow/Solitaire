@@ -105,6 +105,8 @@ class Stack:
                   else:
                     i=i+1
                     a=a+1
+              if len(stack)==0:
+                  flip_up(self, stack)
                     
             else:
                 print ("operation is invalid")
@@ -172,6 +174,16 @@ class Cstack:
               i=i+1
         else:
             print ("operation is against the rules")
+
+    
+    def switch_cstacks(self, card, dest):
+        if card!=14:
+            print ("operation is invalid")
+        else:
+          if add_card(self, dest, card)==1:
+              add_card(self, dest, card)
+          else:
+              print ("operation is invalid")
 
 
 
