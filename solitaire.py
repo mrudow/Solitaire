@@ -36,7 +36,15 @@ class Deck:
           else:
               1==1
 
-
+#ndc=next deck card
+    def ndc(self, card)
+      deck[len(deck)]=deck[0]
+      del deck[0]
+      i=0
+      for i<=len(deck)
+        deck[i]=deck[i+1]
+        del deck[i+1]
+        i=i+1
         
 class Card:
     def __init__(self, color="red", suit="diamond"):
@@ -57,6 +65,18 @@ class Stack:
     stack={}
     dstack={}
     
+    def flip_up(self, stack)
+      if len(stack)==0 & len(dstack)>0:
+          stack[0]=dstack[0]
+          del dstack[0]
+          i=1
+          for i<len(dstack):
+            dstack[i-1] = dstack.[i]
+            del dstack[i]
+            i=i+1
+      else:
+          0==0
+
     def add_card_to_stack(self, stack, next_card):
         if len(stack)==0 & next_card==13:
             stack[0]=next_card
@@ -66,6 +86,57 @@ class Stack:
             return 1
         else:
             print ("Try again. If you're lucky, it might work")
+
+#ss=switch stacks (need to be able to do it for one OR MORE cards)
+    def ss (self, stack, card, next_stack):
+        if len(stack)==0:
+            print ("there is no card to move")
+        else:
+            if add_card_to_stack(self, next_stack, card)==1:
+              i=0
+              a=1
+              for i < len(stack):
+                  if stack[i]=card:
+                    add_card_to_stack(self, next_stack, card)
+                    a=a-1
+                    for a>0:
+                        add_card_to_stack(self, next_stack, stack[a])
+                        a=a-1
+                  else:
+                    i=i+1
+                    a=a+1
+                    
+            else:
+                print ("operation is invalid")
+
+#m2cs=move to cstack
+    def m2cs(self, card, dest)
+      if len(stack)==0:
+          if len(dstack)==0:
+            print("there is no card to move"
+          else:
+            flip_up(dest)
+            m2cs(self, card, dest)
+      else:
+        card = stack[0]
+        if add_card(self, dest, card)==1:
+          if len(stack)==1:
+            add_card(self, dest, card)
+            del stack[0]
+            flip_up(self, stack)
+           
+
+          else:
+            add_card(self, dest, card)
+            del stack[0]
+            i=1
+            for i<len(stack):
+              stack[i-1] = stack.[i]
+              del stack[i]
+              i=i+1
+        else:
+          print ("invalid move")
+
                     
 class Cstack:
     def __init__(self, up_cards=0):
@@ -85,6 +156,24 @@ class Cstack:
             return 1
       else:
         print ("This is not a valid move... Better luck next time")
+    
+    def m2s(self, card, dest):
+      if len(cstack)==0:
+        print "there is nothing to move"
+      else:
+        card= cstack[0]
+        if add_card_to_stack(self, dest, card)==1:
+          add_card_to_stack(self, dest, card)
+          del cstack[0]
+            i=1
+            for i<len(cstack):
+              cstack[i-1] = cstack.[i]
+              del cstack[i]
+              i=i+1
+        else:
+            print ("operation is against the rules")
+
+
 
 stack0= Stack(0, 0)
 stack1= Stack(0, 1)
