@@ -2,8 +2,8 @@
 
 class Deck:
     #ndc=number of deck cards
-    def __init__(self, ndc=24):
-      self.ndc=ndc
+    def __init__(self, ndc):
+      self.ndc=len(deck)
       self.deck = {0:card(2, red, diamond), 1:card(2, red, heart), 2:card(2, black, spade), 3:card(2, black, club), 4:card(3, red, diamond), 5:card(3, red, heart), 6:card(3, black, spade), 7:card(3, black, club), 8:card(4, red, diamond), 9:card(4, red, heart), 10:card(4, black, spade), 11:card(4, black, club), 12:card(5, red, diamond), 13:card(5, red, heart), 14:card(5, black, spade), 15:card(5, black, club), 16:card(6, red, diamond), 17:card(6, red, heart), 18:card(6, black, spade), 19:card(6, black, club), 20:card(7, red, diamond), 21:card(7, red, heart), 22:card(7, black, spade), 23:card(7, black, club), 24:card(8, red, diamond), 25:card(8, red, heart), 26:card(8, black, spade), 27:card(8, black, club), 28:card(9, red, diamond), 29:card(9, red, heart), 30:card(9, black, spade), 31:card(9, black, club), 32:card(10, red, diamond), 33:card(10, red, heart), 34:card(10, black, spade), 35:card(10, black, club), 36:card(11, red, diamond), 37:card(11, red, heart), 38:card(11, black, spade), 39:card(11, black, club), 40:card(12, red, diamond), 41:card(12, red, heart), 42:card(12, black, spade), 43:card(12, black, club), 44:card(13, red, diamond), 45:card(13, red, heart), 46:card(13, black, spade), 47:card(13, black, club), 48:card(14, red, diamond), 49:card(14, red, heart), 50:card(14, black, spade), 51:card(14, black, club),}
 
     
@@ -19,7 +19,6 @@ class Deck:
                  self.deck[i-1] = self.deck[i]
                  del self.deck[i]
                  i=i+1
-              self.ndc=self.ndc-1
           else:
               1==1
       elif dest==(cstack0|cstack1|cstack2|cstack3):
@@ -31,7 +30,6 @@ class Deck:
                  self.deck[i-1] = self.deck[i]
                  del self.deck[i]
                  i=i+1
-              self.ndc=self.ndc-1
           else:
               1==1
 
@@ -58,9 +56,9 @@ class Card:
           return False'''
 
 class Stack:
-    def __init__(self, num_up_cards=1, num_down_cards=0):
-        self.num_up_cards=num_up_cards
-        self.num_down_cards=num_down_cards
+    def __init__(self, num_up_cards=0, num_down_cards=0):
+        self.num_up_cards=len(stack)
+        self.num_down_cards=len(dstack)
     
     stack={}
     dstack={}
@@ -187,22 +185,235 @@ class Cstack:
               add_card(self, dest, card)
           else:
               print ("operation is invalid")
+def show_cards(self)
+  print(stack0.stack)
+  print("first stack number of face down cards is" stack0.num_down_cards)
 
+from random import shuffle
 
 def new_game(self):
+    deck= Deck(52)
+    shuffle(deck)
+    
     stack0= Stack(0, 0)
-    stack1= Stack(0, 1)
-    stack2= Stack(0, 2)
-    stack3= Stack(0, 3)
-    stack4= Stack(0, 4)
-    stack5= Stack(0, 5)
-    stack6= Stack(0, 6)
+    stack0.stack.append(deck[0]
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+
+    stack1= Stack()
+    stack1.stack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack1.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+
+    stack2= Stack()
+    stack2.stack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack2.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack2.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+
+    stack3= Stack()
+    stack3.stack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack3.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack3.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack3.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+
+    stack4= Stack()
+    stack4.stack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack4.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack4.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack4.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack4.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+
+    stack5= Stack()
+    stack5.stack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack5.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack5.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack5.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack5.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack5.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    
+    stack6= Stack()
+    stack6.stack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack6.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack6.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack6.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack6.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack6.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+    stack6.dstack.append(deck[0])
+    del deck[0]
+    i=1
+    while i < len(deck):
+      deck[i-1] = deck[i]
+      del deck[i]
+      i=i+1
+
     cstack0= Cstack()
+    
     cstack1= Cstack()
+    
     cstack2= Cstack()
+    
     cstack3= Cstack()
 
-
+    show_cards()
 #print(stack0, stack1, stack2, stack3, stack4, stack5, stack6, cstack0, cstack1, cstack2, cstack3, deck)
 
 
