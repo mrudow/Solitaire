@@ -30,6 +30,10 @@ class Deck:
                  self.deck[i-1] = self.deck[i]
                  del self.deck[i]
                  i=i+1
+              if len(cstack0)+len(cstack1)+len(cstack2)+len(cstack3)==52:
+                print "you win... get a life Michael"
+              else:
+                0==0
           else:
               1==1
 
@@ -127,6 +131,10 @@ class Stack:
             add_card(self, dest, card)
             del stack[0]
             flip_up(self, stack)
+            if len(cstack0)+len(cstack1)+len(cstack2)+len(cstack3)==52:
+                print "you win... get a life Michael"
+            else:
+                0==0
            
 
           else:
@@ -185,9 +193,74 @@ class Cstack:
               add_card(self, dest, card)
           else:
               print ("operation is invalid")
-def show_cards(self)
-  print(stack0.stack)
-  print("first stack number of face down cards is" stack0.num_down_cards)
+def show_cards(self):
+  print("first stack face up cards are" stack0.stack)
+ 
+  print("second stack face up cards are" stack1.stack)
+  if stack.1.num_down_cards>0:
+      print("second stack number of face down cards is" stack1.num_down_cards)
+  else:
+      1==1
+
+  print("third stack face up cards are" stack2.stack)
+  if stack.1.num_down_cards>0:
+      print("third stack number of face down cards is" stack2.num_down_cards)
+  else:
+      1==1
+
+  print("fourth stack face up cards are" stack3.stack)
+  if stack.1.num_down_cards>0:
+      print("fourth stack number of face down cards is" stack3.num_down_cards)
+  else:
+      1==1
+
+  print("fifth stack face up cards are" stack4.stack)
+  if stack.1.num_down_cards>0:
+      print("fifth stack number of face down cards is" stack4.num_down_cards)
+  else:
+      1==1
+
+  print("sixth stack face up cards are" stack5.stack)
+  if stack.1.num_down_cards>0:
+      print("sixth stack number of face down cards is" stack5.num_down_cards)
+  else:
+      1==1
+
+  print("seventh stack face up cards are" stack6.stack)
+  if stack.1.num_down_cards>0:
+      print("seventh stack number of face down cards is" stack6.num_down_cards)
+  else:
+      1==1
+
+  if len(cstack0.stack)>0:
+      print("first winning stack cards are" cstack0.stack)
+  else:
+      print("first winning stack is empty")
+
+  if len(cstack0.stack)>0:
+      print("second winning stack cards are" cstack1.stack)
+  else:
+      print("second winning stack is empty")
+
+  if len(cstack0.stack)>0:
+      print("third winning stack cards are" cstack2.stack)
+  else:
+      print("third winning stack is empty")
+
+  if len(cstack0.stack)>0:
+      print("fourth winning stack cards are" cstack3.stack)
+  else:
+      print("fourth winning stack is empty")
+
+  if len(deck)>=3:
+      print("deck top three cards are" deck[0], deck[1], deck[2])
+  elif len(deck)==2:
+      print("deck top two cards are" deck[0], deck[1])
+  elif len(deck)==1:
+      print("deck card is" deck[0])
+  else:
+      print("deck is empty")
+
 
 from random import shuffle
 
