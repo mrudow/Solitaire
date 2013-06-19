@@ -4,7 +4,7 @@ class Deck:
     #ndc=number of deck cards
     def __init__(self, ndc=24):
       self.ndc=ndc
-      self.deck = {0:a, 1:b, 2:c, 3:d, 4:e, 5:f, 6:g, 7:h, 8:i, 9:j, 10:k, 11:l, 12:m, 13:n, 14:0, 15:p, 16:q, 17:r, 18:s, 19:t, 20:u, 21:v, 22:w, 23:x, 24:y, 25:z, 26:aa, 27:ab, 28:ac, 29:ad, 30:ae, 31:af, 32:ag, 33:ah, 34:ai, 35:aj, 36:ak, 37:al, 38:am, 39:an, 40:ao, 41:ap, 42:aq, 43:ar, 44:at, 45:au, 46:av, 47:aw, 48:ax, 49:ay, 50:az, 51:azz}
+      self.deck = {0:card(2, red, diamond), 1:card(2, red, heart), 2:card(2, black, spade), 3:card(2, black, club), 4:card(3, red, diamond), 5:card(3, red, heart), 6:card(3, black, spade), 7:card(3, black, club), 8:card(4, red, diamond), 9:card(4, red, heart), 10:card(4, black, spade), 11:card(4, black, club), 12:card(5, red, diamond), 13:card(5, red, heart), 14:card(5, black, spade), 15:card(5, black, club), 16:card(6, red, diamond), 17:card(6, red, heart), 18:card(6, black, spade), 19:card(6, black, club), 20:card(7, red, diamond), 21:card(7, red, heart), 22:card(7, black, spade), 23:card(7, black, club), 24:card(8, red, diamond), 25:card(8, red, heart), 26:card(8, black, spade), 27:card(8, black, club), 28:card(9, red, diamond), 29:card(9, red, heart), 30:card(9, black, spade), 31:card(9, black, club), 32:card(10, red, diamond), 33:card(10, red, heart), 34:card(10, black, spade), 35:card(10, black, club), 36:card(11, red, diamond), 37:card(11, red, heart), 38:card(11, black, spade), 39:card(11, black, club), 40:card(12, red, diamond), 41:card(12, red, heart), 42:card(12, black, spade), 43:card(12, black, club), 44:card(13, red, diamond), 45:card(13, red, heart), 46:card(13, black, spade), 47:card(13, black, club), 48:card(14, red, diamond), 49:card(14, red, heart), 50:card(14, black, spade), 51:card(14, black, club),}
 
     
 #mdc=move deck card
@@ -46,9 +46,10 @@ class Deck:
         i=i+1
         
 class Card:
-    def __init__(self, color="red", suit="diamond"):
+    def __init__(self, value, color, suit):
+        self.value=value
         self.color=color
-        self.suit=suite
+        self.suit=suit
 
     '''def is_even(card):
         if (card % 2==0):
@@ -77,10 +78,13 @@ class Stack:
           0==0
 
     def add_card_to_stack(self, stack, next_card):
-        if len(stack)==0 & next_card==13:
+        if len(stack)==0 & next_card.value==13:
             stack[0]=next_card
             return 1 
-        elif len(stack)!=0 & (stack[len(stack)]+next_card)==13 & (stack[len(stack)].color!=next_card.color):
+        elif len(stack)!=0 & (stack[len(stack)-1].value-next_card.value)==1 & (stack[len(stack)-1].color!=next_card.color):
+            stack[len(stack)]=next_card
+            return 1
+        elif len(stack)!=0 & stack[len(stack)-1].value==2 & next_card.value==14 & (stack[len(stack)-1].color!=next_card.color):
             stack[len(stack)]=next_card
             return 1
         else:
@@ -145,14 +149,14 @@ class Cstack:
     
     cstack={}
     def add_card(self, cstack, nc):
-      if len(cstack)==0 & nc==14:
+      if len(cstack)==0 & nc.value==14:
         cstack[0]=nc
         return 1
-      elif len(cstack)==1 & nc==2 & (cstack[0].suit==nc.suit):
+      elif len(cstack)==1 & nc.value==2 & (cstack[0].suit==nc.suit):
         stack[1]=nc
         return 1
       elif len(cstack)>=2:
-          if (nc-cstack[len(cstack)])==1 & (cstack[len(cstack)].suit==nc.suit):
+          if (nc.value-cstack[len(cstack)].vaue)==1 & (cstack[len(cstack)].suit==nc.suit):
             stack[len(stack)]=nc
             return 1
       else:
@@ -176,7 +180,7 @@ class Cstack:
 
     
     def switch_cstacks(self, card, dest):
-        if card!=14:
+        if card.value!=14:
             print ("operation is invalid")
         else:
           if add_card(self, dest, card)==1:
