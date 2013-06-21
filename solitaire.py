@@ -16,7 +16,7 @@ class Deck:
 #rlc=reorder location cards
            
 
-#mdc=move deck card
+#mdc=move deck card, dest is of form astack.stack_ or wstack.cstack_
     def mdc(self, card, dest):
       self.deck[0]=card
       if dest==(stack0|stack1|stack2|stack3|stack4|stack5|stack6):
@@ -30,7 +30,7 @@ class Deck:
           if add_card(dest, card)==1:
               add_card(dest, card)
               rlc(self.deck)
-              if len(cstack0)+len(cstack1)+len(cstack2)+len(cstack3)==52:
+              if len(wstack.cstack0)+len(wstack.cstack1)+len(wstack.cstack2)+len(wstack.cstack3)==52:
                 print "you win... get a life Michael"
               else:
                 show_cards()
@@ -71,54 +71,54 @@ class Astack:
         if len(astack.stack)==0 & next_card.value==13:
             astack.stack[0]=next_card
             return 1 
-        elif len(astack.stack)!=0 & (atack.stack[len(astack.stack)-1].value-next_card.value)==1 & (stack[len(stack)-1].color!=next_card.color):
-            stack[len(stack)]=next_card
+        elif len(astack.stack)!=0 & (atack.stack[len(astack.stack)-1].value-next_card.value)==1 & (astack.stack[len(astack.stack)-1].color!=next_card.color):
+            astack.stack[len(astack.stack)]=next_card
             return 1
-        elif len(stack)!=0 & stack[len(stack)-1].value==2 & next_card.value==14 & (stack[len(stack)-1].color!=next_card.color):
-            stack[len(stack)]=next_card
+        elif len(astack.stack)!=0 & astack.stack[len(astack.stack)-1].value==2 & next_card.value==14 & (astack.stack[len(astack.stack)-1].color!=next_card.color):
+            astack.stack[len(astack.stack)]=next_card
             return 1
         else:
             print ("Try again. If you're lucky, it might work")
 
-#ss=switch stacks (need to be able to do it for one OR MORE cards)
-    def ss (self, stack, card, next_stack):
-        if len(stack)==0:
+#ss=switch stacks las and card need to be of the form astack.stack_ where _ is a number
+    def ss (self, las, card, nex):
+        if len(las)==0:
             print ("there is no card to move")
         else:
-            if add_card_to_stack(self, next_stack, card)==1:
+            if add_card_to_stack(self, nex, card)==1:
               i=0
               a=1
-              while i < len(stack):
-                  if stack[i]==card:
-                    add_card_to_stack(self, next_stack, card)
+              while i < len(las):
+                  if las[i]==card:
+                    add_card_to_stack(self, nex, card)
                     a=a-1
                     while a>0:
-                        add_card_to_stack(self, next_stack, stack[a])
+                        add_card_to_stack(self, nex, las[a])
                         a=a-1
                   else:
                     i=i+1
                     a=a+1
-              if len(stack)==0:
-                  flip_up(self, stack)
+              if len(las)==0:
+                  flip_up(self, las)
               show_cards()   
             else:
                 print ("operation is invalid")
 
-#m2cs=move to cstack
-    def m2cs(self, stack, card, dest):
-      if len(stack)==0:
-          if len(dstack)==0:
+#m2cs=move to cstack origin is astack_
+    def m2cs(self, origin, card, dest):
+      if len(origin.stack)==0:
+          if len(origin.dstack)==0:
             print("there is no card to move")
           else:
             flip_up(dest)
             m2cs(self, card, dest)
       else:
-        card = stack[0]
+        card = origin.stack[0]
         if add_card(self, dest, card)==1:
-          if len(stack)==1:
+          if len(origin.stack)==1:
             add_card(self, dest, card)
-            del stack[0]
-            flip_up(self, stack)
+            del origin.stack[0]
+            flip_up(self, origin.stack)
             if len(cstack0)+len(cstack1)+len(cstack2)+len(cstack3)==52:
                 print "you win... get a life Michael"
             else:
@@ -127,17 +127,16 @@ class Astack:
 
           else:
             add_card(self, dest, card)
-            rlc(stack)
+            rlc(origin.stack)
             show_cards()
         else:
           print ("invalid move")
 
                     
-class Cstack:
-    def __init__(self, up_cards=0):
+class Wstack:
+    def __init__(self, up_cards=0, cstack={}):
         self.up_cards=up_cards
-    
-    cstack={}
+        self.cstack=cstack
     def add_card(self, cstack, nc):
       if len(cstack)==0 & nc.value==14:
         cstack[0]=nc
@@ -326,13 +325,13 @@ def new_game(self):
     stack6.dstack.append(deck[0])
     rlc(self.deck)
 
-    cstack0= Cstack()
+    cstack0= Wstack()
     
-    cstack1= Cstack()
+    cstack1= Wstack()
     
-    cstack2= Cstack()
+    cstack2= Wstack()
     
-    cstack3= Cstack()
+    cstack3= Wstack()
 
     show_cards()
 #print(stack0, stack1, stack2, stack3, stack4, stack5, stack6, cstack0, cstack1, cstack2, cstack3, deck)
