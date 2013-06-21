@@ -1,4 +1,11 @@
 #!/usr/bin/python
+def rlc(self, loc):
+    del self.loc[0]
+    i=1
+    while i < len(self.loc):
+      self.deck[i-1] = self.loc[i]
+      del self.loc[i]
+      i=i+1
 
 class Deck:
     #ndc=number of deck cards
@@ -6,15 +13,8 @@ class Deck:
       self.ndc=len(deck)
       self.deck = {0:card(2, red, diamond), 1:card(2, red, heart), 2:card(2, black, spade), 3:card(2, black, club), 4:card(3, red, diamond), 5:card(3, red, heart), 6:card(3, black, spade), 7:card(3, black, club), 8:card(4, red, diamond), 9:card(4, red, heart), 10:card(4, black, spade), 11:card(4, black, club), 12:card(5, red, diamond), 13:card(5, red, heart), 14:card(5, black, spade), 15:card(5, black, club), 16:card(6, red, diamond), 17:card(6, red, heart), 18:card(6, black, spade), 19:card(6, black, club), 20:card(7, red, diamond), 21:card(7, red, heart), 22:card(7, black, spade), 23:card(7, black, club), 24:card(8, red, diamond), 25:card(8, red, heart), 26:card(8, black, spade), 27:card(8, black, club), 28:card(9, red, diamond), 29:card(9, red, heart), 30:card(9, black, spade), 31:card(9, black, club), 32:card(10, red, diamond), 33:card(10, red, heart), 34:card(10, black, spade), 35:card(10, black, club), 36:card(11, red, diamond), 37:card(11, red, heart), 38:card(11, black, spade), 39:card(11, black, club), 40:card(12, red, diamond), 41:card(12, red, heart), 42:card(12, black, spade), 43:card(12, black, club), 44:card(13, red, diamond), 45:card(13, red, heart), 46:card(13, black, spade), 47:card(13, black, club), 48:card(14, red, diamond), 49:card(14, red, heart), 50:card(14, black, spade), 51:card(14, black, club),}
 
-#rdc=reorder deck cards
-    def rdc(self):
-        del self.deck[0]
-        i=1
-        while i < len(self.deck):
-          self.deck[i-1] = self.deck[i]
-          del self.deck[i]
-          i=i+1
-       
+#rlc=reorder location cards
+           
 
 #mdc=move deck card
     def mdc(self, card, dest):
@@ -22,14 +22,14 @@ class Deck:
       if dest==(stack0|stack1|stack2|stack3|stack4|stack5|stack6):
           if add_card_to_stack(dest, card)==1:
               add_card_to_stack(dest, card)
-              rdc()
+              rlc(self.deck)
               show_cards()
           else:
               1==1
       elif dest==(cstack0|cstack1|cstack2|cstack3):
           if add_card(dest, card)==1:
               add_card(dest, card)
-              rdc()
+              rlc(self.deck)
               if len(cstack0)+len(cstack1)+len(cstack2)+len(cstack3)==52:
                 print "you win... get a life Michael"
               else:
@@ -53,37 +53,25 @@ class Card:
         self.color=color
         self.suit=suit
 
-    '''def is_even(card):
-        if (card % 2==0):
-          return True
-        else:
-          return False'''
-
-class Stack:
-    def __init__(self, num_up_cards=0, num_down_cards=0):
+class Astack:
+    def __init__(self, num_up_cards=0, num_down_cards=0, stack={}, dstack={}):
         self.num_up_cards=len(stack)
         self.num_down_cards=len(dstack)
+        self.stack=stack
+        self.dstack=dstack
     
-    stack={}
-    dstack={}
-    
-    def flip_up(self, stack):
-      if len(stack)==0 & len(dstack)>0:
-          stack[0]=dstack[0]
-          del dstack[0]
-          i=1
-          while i<len(dstack):
-            dstack[i-1] = dstack[i]
-            del dstack[i]
-            i=i+1
+    def flip_up(self, astack):
+      if len(astack.stack)==0 & len(astack.dstack)>0:
+          astack.stack[0]=astack.dstack[0]
+          rlc(astack.dstack)
       else:
           0==0
 
-    def add_card_to_stack(self, stack, next_card):
-        if len(stack)==0 & next_card.value==13:
-            stack[0]=next_card
+    def add_card_to_stack(self, astack, next_card):
+        if len(astack.stack)==0 & next_card.value==13:
+            astack.stack[0]=next_card
             return 1 
-        elif len(stack)!=0 & (stack[len(stack)-1].value-next_card.value)==1 & (stack[len(stack)-1].color!=next_card.color):
+        elif len(astack.stack)!=0 & (atack.stack[len(astack.stack)-1].value-next_card.value)==1 & (stack[len(stack)-1].color!=next_card.color):
             stack[len(stack)]=next_card
             return 1
         elif len(stack)!=0 & stack[len(stack)-1].value==2 & next_card.value==14 & (stack[len(stack)-1].color!=next_card.color):
@@ -117,7 +105,7 @@ class Stack:
                 print ("operation is invalid")
 
 #m2cs=move to cstack
-    def m2cs(self, card, dest):
+    def m2cs(self, stack, card, dest):
       if len(stack)==0:
           if len(dstack)==0:
             print("there is no card to move")
@@ -139,12 +127,7 @@ class Stack:
 
           else:
             add_card(self, dest, card)
-            del stack[0]
-            i=1
-            while i<len(stack):
-              stack[i-1] = stack[i]
-              del stack[i]
-              i=i+1
+            rlc(stack)
             show_cards()
         else:
           print ("invalid move")
@@ -176,12 +159,7 @@ class Cstack:
         card= cstack[0]
         if add_card_to_stack(self, dest, card)==1:
           add_card_to_stack(self, dest, card)
-          del cstack[0]
-          i=1
-          while i<len(cstack):
-            cstack[i-1] = cstack[i]
-            del cstack[i]
-            i=i+1
+          rlc(cstack)
           show_cards()
         else:
             print ("operation is against the rules")
@@ -196,6 +174,10 @@ class Cstack:
               show_cards()
           else:
               print ("operation is invalid")
+  
+
+
+
 def show_cards(self):
   print("first stack face up cards are" stack0.stack)
  
@@ -263,7 +245,10 @@ def show_cards(self):
       print("deck card is" deck[0])
   else:
       print("deck is empty")
-  
+
+
+
+
 
 from random import shuffle
 
@@ -272,74 +257,74 @@ def new_game(self):
     shuffle(deck)
     
     stack0= Stack(0, 0)
-    stack0.stack.append(deck[0]
-    rdc()
+    stack0.stack.append(deck[0])
+    rlc(self.deck)
 
     stack1= Stack()
     stack1.stack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack1.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck) 
 
     stack2= Stack()
     stack2.stack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack2.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack2.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
 
     stack3= Stack()
     stack3.stack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack3.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack3.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack3.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
 
     stack4= Stack()
     stack4.stack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack4.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack4.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack4.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack4.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
 
     stack5= Stack()
     stack5.stack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack5.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack5.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack5.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack5.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack5.dstack.append(deck[0])
-    rdc()
-    
+    rlc(self.deck)
+  
     stack6= Stack()
     stack6.stack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack6.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack6.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack6.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack6.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack6.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
     stack6.dstack.append(deck[0])
-    rdc()
+    rlc(self.deck)
 
     cstack0= Cstack()
     
@@ -356,3 +341,4 @@ def new_game(self):
 
 
 '''at end, print that you win... get a life Michael'''
+
