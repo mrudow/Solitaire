@@ -177,72 +177,72 @@ class Wstack:
 
 
 
-def show_cards(self):
+def show_cards():
  
-  print("first stack face up cards are" stack0.stack)
+  print("first stack face up cards are" + str(stack0.stack))
 
-  print("second stack face up cards are" stack1.stack)
+  print("second stack face up cards are" +str(stack1.stack))
   if stack1.num_down_cards>0:
-      print("second stack number of face down cards is" stack1.num_down_cards)
+      print("second stack number of face down cards is" + str(stack1.num_down_cards))
   else:
       1==1
 
-  print("third stack face up cards are" stack2.stack)
+  print("third stack face up cards are" + str(stack2.stack))
   if stack2.num_down_cards>0:
-      print("third stack number of face down cards is" stack2.num_down_cards)
+      print("third stack number of face down cards is" + str(stack2.num_down_cards))
   else:
       1==1
 
-  print("fourth stack face up cards are" stack3.stack)
+  print("fourth stack face up cards are" + str(stack3.stack))
   if stack3.num_down_cards>0:
-      print("fourth stack number of face down cards is" stack3.num_down_cards)
+      print("fourth stack number of face down cards is" + str(stack3.num_down_cards))
   else:
       1==1
 
-  print("fifth stack face up cards are" stack4.stack)
+  print("fifth stack face up cards are" + str(stack4.stack))
   if stack4.num_down_cards>0:
-      print("fifth stack number of face down cards is" stack4.num_down_cards)
+      print("fifth stack number of face down cards is" + str(stack4.num_down_cards))
   else:
       1==1
 
-  print("sixth stack face up cards are" stack5.stack)
+  print("sixth stack face up cards are" + str(stack5.stack))
   if stack5.num_down_cards>0:
-      print("sixth stack number of face down cards is" stack5.num_down_cards)
+      print("sixth stack number of face down cards is" + str(stack5.num_down_cards))
   else:
       1==1
 
-  print("seventh stack face up cards are" stack6.stack)
+  print("seventh stack face up cards are" + str(stack6.stack))
   if stack6.num_down_cards>0:
-      print("seventh stack number of face down cards is" stack6.num_down_cards)
+      print("seventh stack number of face down cards is" + str(stack6.num_down_cards))
   else:
       1==1
 
   if len(cstack0.stack)>0:
-      print("first winning stack cards are" cstack0.cstack)
+      print("first winning stack cards are" + str(cstack0.cstack))
   else:
       print("first winning stack is empty")
 
   if len(cstack0.stack)>0:
-      print("second winning stack cards are" cstack1.cstack)
+      print("second winning stack cards are" + str(cstack1.cstack))
   else:
       print("second winning stack is empty")
 
   if len(cstack0.stack)>0:
-      print("third winning stack cards are" cstack2.cstack)
+      print("third winning stack cards are" + str(cstack2.cstack))
   else:
       print("third winning stack is empty")
 
   if len(cstack0.stack)>0:
-      print("fourth winning stack cards are" cstack3.cstack)
+      print("fourth winning stack cards are" + str(cstack3.cstack))
   else:
       print("fourth winning stack is empty")
 
-  if len(deck)>=3:
-      print("deck top three cards are" deck[0], deck[1], deck[2])
+  if len(deck) >=3:
+      print("deck top three cards are" + str(deck[0], deck[1], deck[2]))
   elif len(deck)==2:
-      print("deck top two cards are" deck[0], deck[1])
+      print("deck top two cards are" + str(deck[0], deck[1]))
   elif len(deck)==1:
-      print("deck card is" deck[0])
+      print("deck card is" + str(deck[0]))
   else:
       print("deck is empty")
 
@@ -251,6 +251,7 @@ def show_cards(self):
 
 
 from random import shuffle
+
 
 def new_game(self):
     deck= Deck(52)
