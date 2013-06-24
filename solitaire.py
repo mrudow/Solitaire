@@ -1,4 +1,6 @@
 #!/usr/bin/python
+#rlc=reorder location cards
+from deck import *
 def rlc(self, loc):
     del self.loc[0]
     i=1
@@ -7,51 +9,8 @@ def rlc(self, loc):
       del self.loc[i]
       i=i+1
 
-class Deck:
-    #ndc=number of deck cards
-    def __init__(self, ndc):
-      self.ndc=len(deck)
-      self.deck = {0:card(2, red, diamond), 1:card(2, red, heart), 2:card(2, black, spade), 3:card(2, black, club), 4:card(3, red, diamond), 5:card(3, red, heart), 6:card(3, black, spade), 7:card(3, black, club), 8:card(4, red, diamond), 9:card(4, red, heart), 10:card(4, black, spade), 11:card(4, black, club), 12:card(5, red, diamond), 13:card(5, red, heart), 14:card(5, black, spade), 15:card(5, black, club), 16:card(6, red, diamond), 17:card(6, red, heart), 18:card(6, black, spade), 19:card(6, black, club), 20:card(7, red, diamond), 21:card(7, red, heart), 22:card(7, black, spade), 23:card(7, black, club), 24:card(8, red, diamond), 25:card(8, red, heart), 26:card(8, black, spade), 27:card(8, black, club), 28:card(9, red, diamond), 29:card(9, red, heart), 30:card(9, black, spade), 31:card(9, black, club), 32:card(10, red, diamond), 33:card(10, red, heart), 34:card(10, black, spade), 35:card(10, black, club), 36:card(11, red, diamond), 37:card(11, red, heart), 38:card(11, black, spade), 39:card(11, black, club), 40:card(12, red, diamond), 41:card(12, red, heart), 42:card(12, black, spade), 43:card(12, black, club), 44:card(13, red, diamond), 45:card(13, red, heart), 46:card(13, black, spade), 47:card(13, black, club), 48:card(14, red, diamond), 49:card(14, red, heart), 50:card(14, black, spade), 51:card(14, black, club),}
-
-#rlc=reorder location cards
-           
-
-#mdc=move deck card, dest is of form astack.stack_ or wstack.cstack_
-    def mdc(self, card, dest):
-      self.deck[0]=card
-      if dest==(stack0.stack|stack1.stack|stack2.stack|stack3.stack|stack4.stack|stack5.stack|stack6.stack):
-          if add_card_to_stack(dest, card)==1:
-              add_card_to_stack(dest, card)
-              rlc(self.deck)
-              show_cards()
-          else:
-              1==1
-      elif dest==(cstack0.cstack|cstack1.cstack|cstack2.cstack|cstack3.cstack):
-          if add_card(dest, card)==1:
-              add_card(dest, card)
-              rlc(self.deck)
-              if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
-                print "you win... get a life Michael"
-              else:
-                show_cards()
-          else:
-              1==1
-
-#ndc=next deck card
-    def ndc(self, card):
-      deck[len(deck)]=deck[0]
-      del deck[0]
-      i=0
-      while i<=len(deck):
-        deck[i]=deck[i+1]
-        del deck[i+1]
-        i=i+1
         
-class Card:
-    def __init__(self, value, color, suit):
-        self.value=value
-        self.color=color
-        self.suit=suit
+
 
 class Astack:
     def __init__(self, num_up_cards=0, num_down_cards=0, stack={}, dstack={}):
@@ -250,7 +209,7 @@ def show_cards():
 
 
 
-from random import shuffle
+
 
 
 def new_game(self):
