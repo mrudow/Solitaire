@@ -80,13 +80,14 @@ class Deck:
 
 #ndc=next deck card
     def ndc(self, card):
-      deck[len(deck)]=deck[0]
-      del deck[0]
+      self.deck[len(self.deck)]=self.deck[0]
+      del self.deck[0]
       i=0
-      while i<=len(deck):
-        deck[i]=deck[i+1]
-        del deck[i+1]
+      while i<=len(self.deck):
+        self.deck[i]=self.deck[i+1]
+        del self.deck[i+1]
         i=i+1
 
 #from random import shuffle
 #shuffle(deck) command can be used
+deck= Deck()

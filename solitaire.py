@@ -1,12 +1,12 @@
 #!/usr/bin/python
 #rlc=reorder location cards
 from deck import *
-def rlc(self, loc):
-    del self.loc[0]
+def rlc(loc):
+    del loc[0]
     i=1
-    while i < len(self.loc):
-      self.deck[i-1] = self.loc[i]
-      del self.loc[i]
+    while i < len(loc):
+      loc[i-1] = loc[i]
+      del loc[i]
       i=i+1
 
         
@@ -92,6 +92,14 @@ class Astack:
           print ("invalid move")
 
                     
+stack0= Astack()
+stack1= Astack()
+stack2= Astack()
+stack3= Astack()
+stack4= Astack()
+stack5= Astack()
+stack6= Astack()
+
 class Wstack:
     def __init__(self, up_cards=0, cstack={}):
         self.up_cards=up_cards
@@ -133,9 +141,18 @@ class Wstack:
           else:
               print ("operation is invalid")
   
+cstack0= Wstack()
+cstack1= Wstack()
+cstack2= Wstack()
+cstack3= Wstack()
 
 
 
+def clear_pile(pile):
+    i=0
+    for i<len(pile):
+        del pile[i]
+        i=i+1
 def show_cards():
  
   print("first stack face up cards are" + str(stack0.stack))
@@ -196,12 +213,12 @@ def show_cards():
   else:
       print("fourth winning stack is empty")
 
-  if len(deck) >=3:
-      print("deck top three cards are" + str(deck[0], deck[1], deck[2]))
-  elif len(deck)==2:
-      print("deck top two cards are" + str(deck[0], deck[1]))
-  elif len(deck)==1:
-      print("deck card is" + str(deck[0]))
+  if len(deck.deck) >=3:
+      print("deck top three cards are" + str(deck.deck[0], deck.deck[1], deck.deck[2]))
+  elif len(deck.deck)==2:
+      print("deck top two cards are" + str(deck.deck[0], deck.deck[1]))
+  elif len(deck.deck)==1:
+      print("deck card is" + str(deck.deck[0]))
   else:
       print("deck is empty")
 
@@ -211,88 +228,89 @@ def show_cards():
 
 
 
+from random import shuffle
+def new_game():
+    clear_pile(deck.deck)
+    i=0
+    for i < 52:
+        deck.deck[i]=stand_deck[i]
+        i=i+1
+    shuffle(deck.deck)
+    clear_pile(stack0.stack)
+    clear_pile(stack1.stack)
+    clear_pile(stack2.stack)
+    clear_pile(stack3.stack)
+    clear_pile(stack4.stack)
+    clear_pile(stack5.stack)
+    clear_pile(stack6.stack)
 
-def new_game(self):
-    deck= Deck(52)
-    shuffle(deck)
-    
-    stack0= Stack(0, 0)
-    stack0.stack.append(deck[0])
-    rlc(self.deck)
+    stack0.stack[0]=deck.deck[0]
+    rlc(deck.deck)
 
-    stack1= Stack()
-    stack1.stack.append(deck[0])
-    rlc(self.deck)
-    stack1.dstack.append(deck[0])
-    rlc(self.deck) 
+    stack1.stack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack1.dstack[0]=deck.deck[0]
+    rlc(deck.deck) 
 
-    stack2= Stack()
-    stack2.stack.append(deck[0])
-    rlc(self.deck)
-    stack2.dstack.append(deck[0])
-    rlc(self.deck)
-    stack2.dstack.append(deck[0])
-    rlc(self.deck)
+    stack2.stack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack2.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack2.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
 
-    stack3= Stack()
-    stack3.stack.append(deck[0])
-    rlc(self.deck)
-    stack3.dstack.append(deck[0])
-    rlc(self.deck)
-    stack3.dstack.append(deck[0])
-    rlc(self.deck)
-    stack3.dstack.append(deck[0])
-    rlc(self.deck)
+    stack3.stack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack3.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack3.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack3.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
 
-    stack4= Stack()
-    stack4.stack.append(deck[0])
-    rlc(self.deck)
-    stack4.dstack.append(deck[0])
-    rlc(self.deck)
-    stack4.dstack.append(deck[0])
-    rlc(self.deck)
-    stack4.dstack.append(deck[0])
-    rlc(self.deck)
-    stack4.dstack.append(deck[0])
-    rlc(self.deck)
+    stack4.stack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack4.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack4.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack4.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack4.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
 
-    stack5= Stack()
-    stack5.stack.append(deck[0])
-    rlc(self.deck)
-    stack5.dstack.append(deck[0])
-    rlc(self.deck)
-    stack5.dstack.append(deck[0])
-    rlc(self.deck)
-    stack5.dstack.append(deck[0])
-    rlc(self.deck)
-    stack5.dstack.append(deck[0])
-    rlc(self.deck)
-    stack5.dstack.append(deck[0])
-    rlc(self.deck)
+    stack5.stack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack5.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack5.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack5.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack5.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack5.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
   
-    stack6= Stack()
-    stack6.stack.append(deck[0])
-    rlc(self.deck)
-    stack6.dstack.append(deck[0])
-    rlc(self.deck)
-    stack6.dstack.append(deck[0])
-    rlc(self.deck)
-    stack6.dstack.append(deck[0])
-    rlc(self.deck)
-    stack6.dstack.append(deck[0])
-    rlc(self.deck)
-    stack6.dstack.append(deck[0])
-    rlc(self.deck)
-    stack6.dstack.append(deck[0])
-    rlc(self.deck)
-
-    cstack0= Wstack()
+    stack6.stack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack6.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack6.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack6.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack6.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack6.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
+    stack6.dstack[0]=deck.deck[0]
+    rlc(deck.deck)
     
-    cstack1= Wstack()
-    
-    cstack2= Wstack()
-    
-    cstack3= Wstack()
+    clear_pile(cstack0.cstack)
+    clear_pile(cstack1.cstack)
+    clear_pile(cstack2.cstack)
+    clear_pile(cstack3.cstack)
 
     show_cards()
 
