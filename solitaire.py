@@ -150,7 +150,7 @@ cstack3= Wstack()
 
 def clear_pile(pile):
     i=0
-    for i<len(pile):
+    while i < len(pile):
         del pile[i]
         i=i+1
 def show_cards():
@@ -232,7 +232,7 @@ from random import shuffle
 def new_game():
     clear_pile(deck.deck)
     i=0
-    for i < 52:
+    while i < 52:
         deck.deck[i]=stand_deck[i]
         i=i+1
     shuffle(deck.deck)
