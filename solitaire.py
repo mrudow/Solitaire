@@ -193,32 +193,32 @@ def show_cards():
   else:
       1==1
 
-  if len(cstack0.stack)>0:
+  if len(cstack0.cstack)>0:
       print("first winning stack cards are" + str(cstack0.cstack))
   else:
       print("first winning stack is empty")
 
-  if len(cstack0.stack)>0:
+  if len(cstack0.cstack)>0:
       print("second winning stack cards are" + str(cstack1.cstack))
   else:
       print("second winning stack is empty")
 
-  if len(cstack0.stack)>0:
+  if len(cstack0.cstack)>0:
       print("third winning stack cards are" + str(cstack2.cstack))
   else:
       print("third winning stack is empty")
 
-  if len(cstack0.stack)>0:
+  if len(cstack0.cstack)>0:
       print("fourth winning stack cards are" + str(cstack3.cstack))
   else:
       print("fourth winning stack is empty")
 
   if len(deck.deck) >=3:
-      print("deck top three cards are" + str(deck.deck[0], deck.deck[1], deck.deck[2]))
+      print("deck top three cards are" + str(deck.deck[0].value) + "of" + str(deck.deck[0].suit) + "," + str(deck.deck[1].value) + "of" + str(deck.deck[1].suit) + "," + str(deck.deck[2].value) + "of" + str(deck.deck[2].suit))
   elif len(deck.deck)==2:
-      print("deck top two cards are" + str(deck.deck[0], deck.deck[1]))
+      print("deck top two cards are" + str(deck.deck[0].value) + "of" + str(deck.deck[0].suit) + "," + str(deck.deck[1].value) + "of" + str(deck.deck[1].suit))
   elif len(deck.deck)==1:
-      print("deck card is" + str(deck.deck[0]))
+      print("deck card is" + str(deck.deck[0].value ) + "of" + str(deck.deck[0].suit))
   else:
       print("deck is empty")
 
@@ -233,7 +233,7 @@ def new_game():
     clear_pile(deck.deck)
     i=0
     while i < 52:
-        deck.deck[i]=stand_deck[i]
+        deck.deck[i]=fixdeck.deck[i]
         i=i+1
     shuffle(deck.deck)
     clear_pile(stack0.stack)

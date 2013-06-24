@@ -91,3 +91,4 @@ class Deck:
 #from random import shuffle
 #shuffle(deck) command can be used
 deck= Deck()
+fixdeck= Deck()
