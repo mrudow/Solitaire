@@ -19,18 +19,18 @@ class Deck:
 #mdc=move deck card, dest is of form astack.stack_ or wstack.cstack_
     def mdc(self, card, dest):
       self.deck[0]=card
-      if dest==(stack0|stack1|stack2|stack3|stack4|stack5|stack6):
+      if dest==(stack0.stack|stack1.stack|stack2.stack|stack3.stack|stack4.stack|stack5.stack|stack6.stack):
           if add_card_to_stack(dest, card)==1:
               add_card_to_stack(dest, card)
               rlc(self.deck)
               show_cards()
           else:
               1==1
-      elif dest==(cstack0|cstack1|cstack2|cstack3):
+      elif dest==(cstack0.cstack|cstack1.cstack|cstack2.cstack|cstack3.cstack):
           if add_card(dest, card)==1:
               add_card(dest, card)
               rlc(self.deck)
-              if len(wstack.cstack0)+len(wstack.cstack1)+len(wstack.cstack2)+len(wstack.cstack3)==52:
+              if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
                 print "you win... get a life Michael"
               else:
                 show_cards()
@@ -119,7 +119,7 @@ class Astack:
             add_card(self, dest, card)
             del origin.stack[0]
             flip_up(self, origin.stack)
-            if len(cstack0)+len(cstack1)+len(cstack2)+len(cstack3)==52:
+            if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
                 print "you win... get a life Michael"
             else:
                 show_cards()
@@ -138,24 +138,24 @@ class Wstack:
         self.up_cards=up_cards
         self.cstack=cstack
     def add_card(self, cstack, nc):
-      if len(cstack)==0 & nc.value==14:
-        cstack[0]=nc
+      if len(self.cstack)==0 & nc.value==14:
+        self.cstack[0]=nc
         return 1
-      elif len(cstack)==1 & nc.value==2 & (cstack[0].suit==nc.suit):
-        stack[1]=nc
+      elif len(self.cstack)==1 & nc.value==2 & (self.cstack[0].suit==nc.suit):
+        self.cstack[1]=nc
         return 1
-      elif len(cstack)>=2:
-          if (nc.value-cstack[len(cstack)].vaue)==1 & (cstack[len(cstack)].suit==nc.suit):
-            stack[len(stack)]=nc
+      elif len(self.cstack)>=2:
+          if (nc.value-self.cstack[len(self.cstack)].vaue)==1 & (self.cstack[len(self.cstack)].suit==nc.suit):
+            self.cstack[len(self.cstack)]=nc
             return 1
       else:
         print ("This is not a valid move... Better luck next time")
     
     def m2s(self, card, dest):
-      if len(cstack)==0:
+      if len(self.cstack)==0:
         print "there is nothing to move"
       else:
-        card= cstack[0]
+        card= self.cstack[0]
         if add_card_to_stack(self, dest, card)==1:
           add_card_to_stack(self, dest, card)
           rlc(cstack)
@@ -178,61 +178,62 @@ class Wstack:
 
 
 def show_cards(self):
-  print("first stack face up cards are" stack0.stack)
  
+  print("first stack face up cards are" stack0.stack)
+
   print("second stack face up cards are" stack1.stack)
-  if stack.1.num_down_cards>0:
+  if stack1.num_down_cards>0:
       print("second stack number of face down cards is" stack1.num_down_cards)
   else:
       1==1
 
   print("third stack face up cards are" stack2.stack)
-  if stack.1.num_down_cards>0:
+  if stack2.num_down_cards>0:
       print("third stack number of face down cards is" stack2.num_down_cards)
   else:
       1==1
 
   print("fourth stack face up cards are" stack3.stack)
-  if stack.1.num_down_cards>0:
+  if stack3.num_down_cards>0:
       print("fourth stack number of face down cards is" stack3.num_down_cards)
   else:
       1==1
 
   print("fifth stack face up cards are" stack4.stack)
-  if stack.1.num_down_cards>0:
+  if stack4.num_down_cards>0:
       print("fifth stack number of face down cards is" stack4.num_down_cards)
   else:
       1==1
 
   print("sixth stack face up cards are" stack5.stack)
-  if stack.1.num_down_cards>0:
+  if stack5.num_down_cards>0:
       print("sixth stack number of face down cards is" stack5.num_down_cards)
   else:
       1==1
 
   print("seventh stack face up cards are" stack6.stack)
-  if stack.1.num_down_cards>0:
+  if stack6.num_down_cards>0:
       print("seventh stack number of face down cards is" stack6.num_down_cards)
   else:
       1==1
 
   if len(cstack0.stack)>0:
-      print("first winning stack cards are" cstack0.stack)
+      print("first winning stack cards are" cstack0.cstack)
   else:
       print("first winning stack is empty")
 
   if len(cstack0.stack)>0:
-      print("second winning stack cards are" cstack1.stack)
+      print("second winning stack cards are" cstack1.cstack)
   else:
       print("second winning stack is empty")
 
   if len(cstack0.stack)>0:
-      print("third winning stack cards are" cstack2.stack)
+      print("third winning stack cards are" cstack2.cstack)
   else:
       print("third winning stack is empty")
 
   if len(cstack0.stack)>0:
-      print("fourth winning stack cards are" cstack3.stack)
+      print("fourth winning stack cards are" cstack3.cstack)
   else:
       print("fourth winning stack is empty")
 
@@ -334,10 +335,8 @@ def new_game(self):
     cstack3= Wstack()
 
     show_cards()
-#print(stack0, stack1, stack2, stack3, stack4, stack5, stack6, cstack0, cstack1, cstack2, cstack3, deck)
 
 
 
 
-'''at end, print that you win... get a life Michael'''
 
