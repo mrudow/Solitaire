@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #rlc=reorder location cards
 from deck import *
+
 def rlc(loc):
     del loc[0]
     i=1
@@ -13,9 +14,8 @@ def rlc(loc):
 
 
 class Astack:
-    def __init__(self, num_up_cards=0, num_down_cards=0, stack={}, dstack={}):
+    def __init__(self, num_up_cards=0, stack={}, dstack={}):
         self.num_up_cards=len(stack)
-        self.num_down_cards=len(dstack)
         self.stack=stack
         self.dstack=dstack
     
@@ -153,72 +153,100 @@ def clear_pile(pile):
     while i < len(pile):
         del pile[i]
         i=i+1
+#ssc= show stack's cards
+def ssc(stack):
+    i=len(stack.stack)-1
+    a=''
+    while i >= 0:
+        a= a + str(stack.stack[i].value)
+        a= a + ' of '
+        a= a + str(stack.stack[i].suit)
+        if i > 1:
+            a= a + ', '
+        else:
+            1==1
+        i=i-1
+    return a
+def scsc(cstack):
+    i=len(cstack.stack)-1
+    a=''
+    while i >= 0:
+        a= a + str(cstack.cstack[i].value)
+        a= a + ' of '
+        a=a + str(cstack.cstack[i].suit)
+        if i > 1:
+            a= a + ', '
+        else:
+            1==1
+        i=i-1
+    return a
+
 def show_cards():
  
-  print("first stack face up cards are" + str(stack0.stack))
+  print("first stack face up cards are " + ssc(stack0))
 
-  print("second stack face up cards are" +str(stack1.stack))
-  if stack1.num_down_cards>0:
-      print("second stack number of face down cards is" + str(stack1.num_down_cards))
+  print("second stack face up cards are " +ssc(stack1))
+  if len(stack1.dstack)>0:
+      print("second stack number of face down cards is " + str(len(stack1.dstack)))
   else:
       1==1
 
-  print("third stack face up cards are" + str(stack2.stack))
-  if stack2.num_down_cards>0:
-      print("third stack number of face down cards is" + str(stack2.num_down_cards))
+  print("third stack face up cards are " + ssc(stack2))
+  if len(stack2.dstack)>0:
+      print("third stack number of face down cards is " + str(len(stack2.dstack)))
   else:
       1==1
 
-  print("fourth stack face up cards are" + str(stack3.stack))
-  if stack3.num_down_cards>0:
-      print("fourth stack number of face down cards is" + str(stack3.num_down_cards))
+  print("fourth stack face up cards are " + ssc(stack3))
+  if len(stack3.dstack)>0:
+      print("fourth stack number of face down cards is " + str(len(stack3.dstack)))
   else:
       1==1
 
-  print("fifth stack face up cards are" + str(stack4.stack))
-  if stack4.num_down_cards>0:
-      print("fifth stack number of face down cards is" + str(stack4.num_down_cards))
+  print("fifth stack face up cards are " + ssc(stack4))
+  if len(stack4.dstack)>0:
+      print("fifth stack number of face down cards is " + str(len(stack4.dstack)))
   else:
       1==1
 
-  print("sixth stack face up cards are" + str(stack5.stack))
-  if stack5.num_down_cards>0:
-      print("sixth stack number of face down cards is" + str(stack5.num_down_cards))
+  print("sixth stack face up cards are " + ssc(stack5))
+  if len(stack5.dstack)>0:
+      print("sixth stack number of face down cards is " + str(len(stack5.dstack)))
   else:
       1==1
 
-  print("seventh stack face up cards are" + str(stack6.stack))
-  if stack6.num_down_cards>0:
-      print("seventh stack number of face down cards is" + str(stack6.num_down_cards))
+  print("seventh stack face up cards are " + ssc(stack6))
+  if len(stack6.dstack)>0:
+      print("seventh stack number of face down cards is " + str(len(stack6.dstack)))
   else:
       1==1
 
   if len(cstack0.cstack)>0:
-      print("first winning stack cards are" + str(cstack0.cstack))
+      print("first winning stack cards are " + scsc(cstack0))
   else:
       print("first winning stack is empty")
 
   if len(cstack0.cstack)>0:
-      print("second winning stack cards are" + str(cstack1.cstack))
+      print("second winning stack cards are " + scsc(cstack1))
   else:
       print("second winning stack is empty")
 
   if len(cstack0.cstack)>0:
-      print("third winning stack cards are" + str(cstack2.cstack))
+      print("third winning stack cards are " + scsc(cstack2))
   else:
       print("third winning stack is empty")
 
   if len(cstack0.cstack)>0:
-      print("fourth winning stack cards are" + str(cstack3.cstack))
+      print("fourth winning stack cards are " + scsc(cstack3))
   else:
       print("fourth winning stack is empty")
 
   if len(deck.deck) >=3:
-      print("deck top three cards are" + str(deck.deck[0].value) + "of" + str(deck.deck[0].suit) + "," + str(deck.deck[1].value) + "of" + str(deck.deck[1].suit) + "," + str(deck.deck[2].value) + "of" + str(deck.deck[2].suit))
+      print("deck top three cards are " + str(deck.deck[0].value) + " of " + str(deck.deck[0].suit) + "," + ' ' + str(deck.deck[1].value) + " of " + str(deck.deck[1].suit) + "," + ' ' + str(deck.deck[2].value) + " of " + str(deck.deck[2].suit))
   elif len(deck.deck)==2:
-      print("deck top two cards are" + str(deck.deck[0].value) + "of" + str(deck.deck[0].suit) + "," + str(deck.deck[1].value) + "of" + str(deck.deck[1].suit))
+      print("deck top two cards are " + str(deck.deck[0].value) + " of " + str(deck.deck[0].suit) + "," + ' ' + str(deck.deck[1].value) + " of " + str(deck.deck[1].suit))
   elif len(deck.deck)==1:
-      print("deck card is" + str(deck.deck[0].value ) + "of" + str(deck.deck[0].suit))
+      print("deck card is the " + str(deck.deck[0].value ) + " of " + str(deck.deck[0].suit))
   else:
       print("deck is empty")
 
@@ -256,55 +284,55 @@ def new_game():
     rlc(deck.deck)
     stack2.dstack[0]=deck.deck[0]
     rlc(deck.deck)
-    stack2.dstack[0]=deck.deck[0]
+    stack2.dstack[1]=deck.deck[0]
     rlc(deck.deck)
 
     stack3.stack[0]=deck.deck[0]
     rlc(deck.deck)
     stack3.dstack[0]=deck.deck[0]
     rlc(deck.deck)
-    stack3.dstack[0]=deck.deck[0]
+    stack3.dstack[1]=deck.deck[0]
     rlc(deck.deck)
-    stack3.dstack[0]=deck.deck[0]
+    stack3.dstack[2]=deck.deck[0]
     rlc(deck.deck)
 
     stack4.stack[0]=deck.deck[0]
     rlc(deck.deck)
     stack4.dstack[0]=deck.deck[0]
     rlc(deck.deck)
-    stack4.dstack[0]=deck.deck[0]
+    stack4.dstack[1]=deck.deck[0]
     rlc(deck.deck)
-    stack4.dstack[0]=deck.deck[0]
+    stack4.dstack[2]=deck.deck[0]
     rlc(deck.deck)
-    stack4.dstack[0]=deck.deck[0]
+    stack4.dstack[3]=deck.deck[0]
     rlc(deck.deck)
 
     stack5.stack[0]=deck.deck[0]
     rlc(deck.deck)
     stack5.dstack[0]=deck.deck[0]
     rlc(deck.deck)
-    stack5.dstack[0]=deck.deck[0]
+    stack5.dstack[1]=deck.deck[0]
     rlc(deck.deck)
-    stack5.dstack[0]=deck.deck[0]
+    stack5.dstack[2]=deck.deck[0]
     rlc(deck.deck)
-    stack5.dstack[0]=deck.deck[0]
+    stack5.dstack[3]=deck.deck[0]
     rlc(deck.deck)
-    stack5.dstack[0]=deck.deck[0]
+    stack5.dstack[4]=deck.deck[0]
     rlc(deck.deck)
   
     stack6.stack[0]=deck.deck[0]
     rlc(deck.deck)
     stack6.dstack[0]=deck.deck[0]
     rlc(deck.deck)
-    stack6.dstack[0]=deck.deck[0]
+    stack6.dstack[1]=deck.deck[0]
     rlc(deck.deck)
-    stack6.dstack[0]=deck.deck[0]
+    stack6.dstack[2]=deck.deck[0]
     rlc(deck.deck)
-    stack6.dstack[0]=deck.deck[0]
+    stack6.dstack[3]=deck.deck[0]
     rlc(deck.deck)
-    stack6.dstack[0]=deck.deck[0]
+    stack6.dstack[4]=deck.deck[0]
     rlc(deck.deck)
-    stack6.dstack[0]=deck.deck[0]
+    stack6.dstack[5]=deck.deck[0]
     rlc(deck.deck)
     
     clear_pile(cstack0.cstack)
