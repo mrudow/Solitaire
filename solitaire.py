@@ -14,9 +14,9 @@ def rlc(loc):
 
 
 class Astack:
-    def __init__(self, stack={}, dstack={}):
-        self.stack=stack
-        self.dstack=dstack
+    def __init__(self):
+        self.stack={}
+        self.dstack={}
     
     def flip_up(self, astack):
       if len(astack.stack)==0 & len(astack.dstack)>0:
@@ -100,8 +100,8 @@ stack5= Astack()
 stack6= Astack()
 
 class Wstack:
-    def __init__(self, cstack={}):
-        self.cstack=cstack
+    def __init__(self,):
+        self.cstack={}
     def add_card(self, cstack, nc):
       if len(self.cstack)==0 & nc.value==14:
         self.cstack[0]=nc
