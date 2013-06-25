@@ -5,7 +5,7 @@ from deck import *
 def rlc(loc):
     del loc[0]
     i=1
-    while i < len(loc):
+    while i <= len(loc):
       loc[i-1] = loc[i]
       del loc[i]
       i=i+1
