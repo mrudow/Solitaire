@@ -12,83 +12,90 @@ def rlc(loc):
 
         
 
-
+def move_up(stac):
+  i=(len(stac.stack) - 1)
+  while i >= 0:
+      stac.stack[i+1]=stac.stack[i]
+      del stac.stack[i]
+      i=i-1
 class Astack:
     def __init__(self):
         self.stack={}
         self.dstack={}
     
     def flip_up(self, astack):
-      if len(astack.stack)==0 & len(astack.dstack)>0:
+      if len(astack.stack)==0 and len(astack.dstack)>0:
           astack.stack[0]=astack.dstack[0]
           rlc(astack.dstack)
       else:
           0==0
 
-    def add_card_to_stack(self, astack, next_card):
-        if len(astack.stack)==0 & next_card.value==13:
-            astack.stack[0]=next_card
-            return 1 
-        elif len(astack.stack)!=0 & (atack.stack[len(astack.stack)-1].value-next_card.value)==1 & (astack.stack[len(astack.stack)-1].color!=next_card.color):
-            astack.stack[len(astack.stack)]=next_card
-            return 1
-        elif len(astack.stack)!=0 & astack.stack[len(astack.stack)-1].value==2 & next_card.value==14 & (astack.stack[len(astack.stack)-1].color!=next_card.color):
-            astack.stack[len(astack.stack)]=next_card
-            return 1
-        else:
-            print ("Try again. If you're lucky, it might work")
+def add_card_to_stack(astack, next_card):
+    if len(astack.stack)==0 and next_card.value==13:
+        astack.stack[0]=next_card
+        return 1 
+    elif len(astack.stack)!=0 and (astack.stack[0].value-next_card.value)==1 and (astack.stack[0].color!=next_card.color):
+        move_up(astack)
+        astack.stack[0]=next_card
+        return 1
+    elif len(astack.stack)!=0 and astack.stack[0].value==2 and next_card.value==14 and (astack.stack[0].color!=next_card.color):
+        move_up(astack)
+        astack.stack[0]=next_card
+        return 1
+    else:
+        print ("Try again. If you're lucky, it might work")
 
-#ss=switch stacks las and card need to be of the form astack.stack_ where _ is a number
-    def ss (self, las, card, nex):
-        if len(las)==0:
-            print ("there is no card to move")
+#ss=switch stacks las and nex need to be of the form astack
+def ss (las, card, nex):
+    if len(las.stack)==0:
+        print ("there is no card to move")
+    else:
+        if add_card_to_stack(nex, card)==1:
+          if las.stack[0].value == card.value:
+              rlc(las.stack)
+          else:
+            i=0
+            while las.stack[i].value < card.value:
+              i=i+1
+            shift_down_one(las, i)
+            a=i-1
+            while a >= 0:
+              add_card_to_stack(nex, las.stack[a])
+              shift_down_one(las, a)
+              a=a-1
+          if len(las.stack)==0:
+              las.flip_up(las)
+          show_cards()   
         else:
-            if add_card_to_stack(self, nex, card)==1:
-              i=0
-              a=1
-              while i < len(las):
-                  if las[i]==card:
-                    add_card_to_stack(self, nex, card)
-                    a=a-1
-                    while a>0:
-                        add_card_to_stack(self, nex, las[a])
-                        a=a-1
-                  else:
-                    i=i+1
-                    a=a+1
-              if len(las)==0:
-                  flip_up(self, las)
-              show_cards()   
-            else:
-                print ("operation is invalid")
+            print ("operation is invalid")
 
 #m2cs=move to cstack origin is astack_
-    def m2cs(self, origin, card, dest):
-      if len(origin.stack)==0:
-          if len(origin.dstack)==0:
-            print("there is no card to move")
-          else:
-            flip_up(dest)
-            m2cs(self, card, dest)
+def m2cs(self, origin, card, dest):
+  if len(origin.stack)==0:
+      if len(origin.dstack)==0:
+        print("there is no card to move")
       else:
-        card = origin.stack[0]
-        if add_card(self, dest, card)==1:
-          if len(origin.stack)==1:
-            add_card(self, dest, card)
-            del origin.stack[0]
-            flip_up(self, origin.stack)
-            if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
-                print "you win... get a life Michael"
-            else:
-                show_cards()
-           
-
-          else:
-            add_card(self, dest, card)
-            rlc(origin.stack)
-            show_cards()
+        flip_up(dest)
+        m2cs(self, card, dest)
+  else:
+    card = origin.stack[0]
+    if add_card(self, dest, card)==1:
+      if len(origin.stack)==1:
+        add_card(self, dest, card)
+        del origin.stack[0]
+        flip_up(self, origin.stack)
+        if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
+            print "you win... get a life Michael"
         else:
-          print ("invalid move")
+            show_cards()
+       
+
+      else:
+        add_card(self, dest, card)
+        rlc(origin.stack)
+        show_cards()
+    else:
+      print ("invalid move")
 
                     
 stack0= Astack()
@@ -99,20 +106,35 @@ stack4= Astack()
 stack5= Astack()
 stack6= Astack()
 
+def shift_down_one(astack, starting_index):
+    a=(len(astack.stack) - 1)
+    if a==starting_index:
+        del astack.stack[starting_index]
+    else:
+        while starting_index < a:
+            del astack.stack[starting_index]
+            astack.stack[starting_index]=astack.stack[starting_index + 1]
+            del astack.stack[starting_index + 1]
+            starting_index=starting_index + 1
+
+
 class Wstack:
     def __init__(self,):
         self.cstack={}
     def add_card(self, cstack, nc):
-      if len(self.cstack)==0 & nc.value==14:
+      if len(self.cstack)==0 and nc.value==14:
         self.cstack[0]=nc
         return 1
-      elif len(self.cstack)==1 & nc.value==2 & (self.cstack[0].suit==nc.suit):
-        self.cstack[1]=nc
-        return 1
+      elif len(self.cstack)==1:
+        if nc.value==2 and (self.cstack[0].suit==nc.suit):
+          move_up(cstack) 
+          self.cstack[0]=nc
+          return 1
       elif len(self.cstack)>=2:
-          if (nc.value-self.cstack[len(self.cstack)].vaue)==1 & (self.cstack[len(self.cstack)].suit==nc.suit):
-            self.cstack[len(self.cstack)]=nc
-            return 1
+        if (nc.value-self.cstack[len(self.cstack)].vaue)==1 and (self.cstack[len(self.cstack)].suit==nc.suit):
+          move_up(cstack)
+          self.cstack[0]=nc
+          return 1
       else:
         print ("This is not a valid move... Better luck next time")
     
@@ -121,8 +143,8 @@ class Wstack:
         print "there is nothing to move"
       else:
         card= self.cstack[0]
-        if add_card_to_stack(self, dest, card)==1:
-          add_card_to_stack(self, dest, card)
+        if add_card_to_stack(dest, card)==1:
+          add_card_to_stack(dest, card)
           rlc(cstack)
           show_cards()
         else:
@@ -133,32 +155,49 @@ class Wstack:
         if card.value!=14:
             print ("operation is invalid")
         else:
-          if add_card(self, dest, card)==1:
-              add_card(self, dest, card)
+          if dest.add_card(self, dest, card)==1:
+              dest.add_card(self, dest, card)
               show_cards()
           else:
-              print ("operation is invalid")
+              print ("operation is invalid") 
   
 cstack0= Wstack()
 cstack1= Wstack()
 cstack2= Wstack()
 cstack3= Wstack()
-
+#mdc=move deck card, dest is of form stack_ or cstack_
+def mdc(dest):
+  if str(dest)[11]=='A':
+      if add_card_to_stack(dest, deck.deck[0])==1:
+          rlc(deck.deck)
+          show_cards()
+      else:
+          1==1
+  elif str(dest)[11]=='W':
+      if dest.add_card(dest, deck.deck[0])==1:
+          rlc(deck.deck)
+          if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
+            print "you win... get a life Michael"
+          else:
+            show_cards()
+      else:
+          1==1
 
 
 def clear_pile(pile):
     i=0
-    while i < len(pile):
+    b=len(pile)
+    while i < b:
         del pile[i]
         i=i+1
 #ssc= show stack's cards
-def ssc(stack):
-    i=len(stack.stack)-1
+def ssc(astack):
+    i=len(astack.stack)-1
     a=''
     while i >= 0:
-        a= a + str(stack.stack[i].value)
+        a= a + str(astack.stack[i].value)
         a= a + ' of '
-        a= a + str(stack.stack[i].suit)
+        a= a + str(astack.stack[i].suit)
         if i > 1:
             a= a + ', '
         else:
@@ -166,7 +205,7 @@ def ssc(stack):
         i=i-1
     return a
 def scsc(cstack):
-    i=len(cstack.stack)-1
+    i=len(cstack.cstack)-1
     a=''
     while i >= 0:
         a= a + str(cstack.cstack[i].value)

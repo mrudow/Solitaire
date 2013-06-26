@@ -57,17 +57,16 @@ class Deck:
 
 #mdc=move deck card, dest is of form astack.stack_ or wstack.cstack_
     def mdc(self, dest):
-      self.deck[0]=card
       if dest==(stack0.stack|stack1.stack|stack2.stack|stack3.stack|stack4.stack|stack5.stack|stack6.stack):
-          if add_card_to_stack(dest, card)==1:
-              add_card_to_stack(dest, card)
+          if add_card_to_stack(dest, self.deck[0])==1:
+              add_card_to_stack(dest, self.deck[0])
               rlc(self.deck)
               show_cards()
           else:
               1==1
       elif dest==(cstack0.cstack|cstack1.cstack|cstack2.cstack|cstack3.cstack):
-          if add_card(dest, card)==1:
-              add_card(dest, card)
+          if add_card(dest, self.deck[0])==1:
+              add_card(dest, self.deck[0])
               rlc(self.deck)
               if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
                 print "you win... get a life Michael"
