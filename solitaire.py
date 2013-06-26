@@ -23,12 +23,12 @@ class Astack:
         self.stack={}
         self.dstack={}
     
-    def flip_up(self, astack):
-      if len(astack.stack)==0 and len(astack.dstack)>0:
-          astack.stack[0]=astack.dstack[0]
-          rlc(astack.dstack)
-      else:
-          0==0
+def flip_up(astack):
+  if len(astack.stack)==0 and len(astack.dstack)>0:
+      astack.stack[0]=astack.dstack[0]
+      rlc(astack.dstack)
+  else:
+      0==0
 
 def add_card_to_stack(astack, next_card):
     if len(astack.stack)==0 and next_card.value==13:
@@ -72,11 +72,7 @@ def ss (las, card, nex):
 #m2cs=move to cstack origin is astack_
 def m2cs(self, origin, card, dest):
   if len(origin.stack)==0:
-      if len(origin.dstack)==0:
-        print("there is no card to move")
-      else:
-        flip_up(dest)
-        m2cs(self, card, dest)
+      print("there is no card to move")
   else:
     card = origin.stack[0]
     if add_card(self, dest, card)==1:
