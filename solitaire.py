@@ -83,10 +83,7 @@ def m2cs(origin, dest):
       if len(origin.stack)==1:
         del origin.stack[0]
         flip_up(origin)
-        if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
-            print "you win... get a life Michael"
-        else:
-            show_cards()
+        show_cards()
       else:
         rlc(origin.stack)
         show_cards()
@@ -128,42 +125,45 @@ def add_card(wstack, nc):
       wstack.cstack[0]=nc
       return 1
   elif len(wstack.cstack)>=2:
-    if (nc.value-wstack.cstack[len(wstack.cstack)].vaue)==1 and (wstack.cstack[len(wstack.cstack)].suit==nc.suit):
+    if (nc.value-wstack.cstack[0].value)==1 and (wstack.cstack[0].suit==nc.suit):
       move_up(wstack.cstack)
       wstack.cstack[0]=nc
-      return 1
+      
+      if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
+        print "you win... get a life Michael"
+        return 1
+      else:
+        return 1
   else:
     print ("This is not a valid move... Better luck next time")
 
-def m2s(prev, card, dest):
+def m2s(prev, dest):
   if len(prev.cstack)==0:
     print "there is nothing to move"
   else:
     card= prev.cstack[0]
     if add_card_to_stack(dest, card)==1:
-      add_card_to_stack(dest, card)
-      rlc(prev)
+      rlc(prev.cstack)
       show_cards()
     else:
         1==1
-        print ("operation is against the rules")
 
 
-def switch_cstacks(prev, card, dest):
-    if card.value!=14:
+def switch_cstacks(prev, dest):
+    if len(prev.cstack)==1:
+      card= prev.cstack[0]
+      if add_card(dest, card)==1:
+        del prev.cstack[0]
+        show_cards()
+      else:
         print ("operation is invalid")
     else:
-      if add_card(prev, dest, card)==1:
-          add_card(prev, dest, card)
-          show_cards()
-      else:
-          1==1
-          print ("operation is invalid") 
-  
+        print ("operation is invalid")
 cstack0= Wstack()
 cstack1= Wstack()
 cstack2= Wstack()
-cstack3= Wstack()
+cstack3= Wstack()     
+
 #mdc=move deck card, dest is of form stack_ or cstack_
 def mdc(dest):
   if str(dest)[11]=='A':
@@ -175,10 +175,7 @@ def mdc(dest):
   elif str(dest)[11]=='W':
       if add_card(dest, deck.deck[0])==1:
           rlc(deck.deck)
-          if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
-            print "you win... get a life Michael"
-          else:
-            show_cards()
+          show_cards()
       else:
           1==1
 
@@ -189,91 +186,81 @@ def clear_pile(pile):
     while i < b:
         del pile[i]
         i=i+1
-#ssc= show stack's cards
-def ssc(astack):
-    i=len(astack.stack)-1
+#ssc= show stack's cards, lstack=cstack_.cstack or stack_.stack
+def ssc(lstack):
+    i=len(lstack)-1
     a=''
     while i >= 0:
-        a= a + str(astack.stack[i].value)
-        a= a + ' of '
-        a= a + str(astack.stack[i].suit)
-        if i > 1:
-            a= a + ', '
+        if i > 0:
+          a= a + str(lstack[i].value)
+          a= a + ' of '
+          a=a + str(lstack[i].suit)
+          a= a + ', '
+          i=i-1
         else:
-            1==1
-        i=i-1
-    return a
-def scsc(cstack):
-    i=len(cstack.cstack)-1
-    a=''
-    while i >= 0:
-        a= a + str(cstack.cstack[i].value)
-        a= a + ' of '
-        a=a + str(cstack.cstack[i].suit)
-        if i > 1:
-            a= a + ', '
-        else:
-            1==1
-        i=i-1
+          a= a + str(lstack[i].value)
+          a= a + ' of '
+          a=a + str(lstack[i].suit)
+          i=i-1
     return a
 
 def show_cards():
  
-  print("first stack face up cards are " + ssc(stack0))
+  print("first stack cards include: " + ssc(stack0.stack))
 
-  print("second stack face up cards are " +ssc(stack1))
+  print("second stack cards include: " + ssc(stack1.stack))
   if len(stack1.dstack)>0:
       print("second stack number of face down cards is " + str(len(stack1.dstack)))
   else:
       1==1
 
-  print("third stack face up cards are " + ssc(stack2))
+  print("third stack cards include: " + ssc(stack2.stack))
   if len(stack2.dstack)>0:
       print("third stack number of face down cards is " + str(len(stack2.dstack)))
   else:
       1==1
 
-  print("fourth stack face up cards are " + ssc(stack3))
+  print("fourth stack cards include: " + ssc(stack3.stack))
   if len(stack3.dstack)>0:
       print("fourth stack number of face down cards is " + str(len(stack3.dstack)))
   else:
       1==1
 
-  print("fifth stack face up cards are " + ssc(stack4))
+  print("fifth stack cards include: " + ssc(stack4.stack))
   if len(stack4.dstack)>0:
       print("fifth stack number of face down cards is " + str(len(stack4.dstack)))
   else:
       1==1
 
-  print("sixth stack face up cards are " + ssc(stack5))
+  print("sixth stack cards include: " + ssc(stack5.stack))
   if len(stack5.dstack)>0:
       print("sixth stack number of face down cards is " + str(len(stack5.dstack)))
   else:
       1==1
 
-  print("seventh stack face up cards are " + ssc(stack6))
+  print("seventh stack cards include: " + ssc(stack6.stack))
   if len(stack6.dstack)>0:
       print("seventh stack number of face down cards is " + str(len(stack6.dstack)))
   else:
       1==1
 
   if len(cstack0.cstack)>0:
-      print("first winning stack cards are " + scsc(cstack0))
+      print("first winning stack cards include " + ssc(cstack0.cstack))
   else:
       print("first winning stack is empty")
 
-  if len(cstack0.cstack)>0:
-      print("second winning stack cards are " + scsc(cstack1))
+  if len(cstack1.cstack)>0:
+      print("second winning stack cards include " + ssc(cstack1.cstack))
   else:
       print("second winning stack is empty")
 
-  if len(cstack0.cstack)>0:
-      print("third winning stack cards are " + scsc(cstack2))
+  if len(cstack2.cstack)>0:
+      print("third winning stack cards include " + ssc(cstack2.cstack))
   else:
       print("third winning stack is empty")
 
-  if len(cstack0.cstack)>0:
-      print("fourth winning stack cards are " + scsc(cstack3))
+  if len(cstack3.cstack)>0:
+      print("fourth winning stack cards include " + ssc(cstack3.cstack))
   else:
       print("fourth winning stack is empty")
 

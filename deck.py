@@ -55,25 +55,7 @@ class Deck:
     def __init__(self):
         self.deck = {0:car0, 1:car1, 2:car2, 3:car3, 4:car4, 5:car5, 6:car6, 7:car7, 8:car8, 9:car9, 10:car10, 11:car11, 12:car12, 13:car13, 14:car14, 15:car15, 16:car16, 17:car17, 18:car18, 19:car19, 20:car20, 21:car21, 22:car22, 23:car23, 24:car24, 25:car25, 26:car26, 27:car27, 28:car28, 29:car29, 30:car30, 31:car31, 32:car32, 33:car33, 34:car34, 35:car35, 36:car36, 37:car37, 38:car38, 39:car39, 40:car40, 41:car41, 42:car42, 43:car43, 44:car44, 45:car45, 46:car46, 47:car47, 48:car48, 49:car49, 50:car50, 51:car51}
 
-#mdc=move deck card, dest is of form astack.stack_ or wstack.cstack_
-    def mdc(self, dest):
-      if dest==(stack0.stack|stack1.stack|stack2.stack|stack3.stack|stack4.stack|stack5.stack|stack6.stack):
-          if add_card_to_stack(dest, self.deck[0])==1:
-              add_card_to_stack(dest, self.deck[0])
-              rlc(self.deck)
-              show_cards()
-          else:
-              1==1
-      elif dest==(cstack0.cstack|cstack1.cstack|cstack2.cstack|cstack3.cstack):
-          if add_card(dest, self.deck[0])==1:
-              add_card(dest, self.deck[0])
-              rlc(self.deck)
-              if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
-                print "you win... get a life Michael"
-              else:
-                show_cards()
-          else:
-              1==1
+
 
 #ndc=next deck card
     def ndc(self):
