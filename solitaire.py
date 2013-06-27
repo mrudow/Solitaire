@@ -382,10 +382,12 @@ def new_game():
 #commands
 
 def ndc():
+    '''move the top deck card to the bottom of the deck and show your cards'''
     deck.ndc()
     show_cards()
 
 def move(prev, num_cards, dest):
+    '''move the number of cards in num_cards from prev to dest.'''
     if prev == deck:
         if (str(dest)[11] == 'A') | (str(dest)[11] == 'W'):
           mdc(dest)
@@ -409,4 +411,6 @@ def move(prev, num_cards, dest):
         print ('select a valid place to move the card from')
 
 def new():
+    '''start a new game'''
+    print ("Your commands are: 1. move(prev, num_cards, dest) = move the number of cards in num_cards from prev to dest. 2. ndc() =move the top deck card to the bottom of the deck and show your cards. 3. new() = start a new game.")
     new_game()
