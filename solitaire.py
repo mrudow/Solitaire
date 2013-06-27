@@ -43,7 +43,7 @@ def add_card_to_stack(astack, next_card):
         astack.stack[0]=next_card
         return 1
     else:
-        print ("Try again. If you're lucky, it might work")
+        print ("Try again...")
 
 #ss=switch stacks las and nex need to be of the form astack
 def ss (las, card, nex):
@@ -68,7 +68,6 @@ def ss (las, card, nex):
           show_cards()   
         else:
             1==1
-            print ("operation is invalid")
 
 #m2cs=move to cstack origin is astack_
 
@@ -89,7 +88,6 @@ def m2cs(origin, dest):
         show_cards()
     else:
       1==1
-      print ("invalid move")
 
                     
 stack0= Astack()
@@ -130,12 +128,12 @@ def add_card(wstack, nc):
       wstack.cstack[0]=nc
       
       if len(cstack0.cstack)+len(cstack1.cstack)+len(cstack2.cstack)+len(cstack3.cstack)==52:
-        print "you win... get a life Michael"
+        print "you win. Stop playing solitaire and get a life... just saying"
         return 1
       else:
         return 1
   else:
-    print ("This is not a valid move... Better luck next time")
+    print ("This is not a valid move")
 
 def m2s(prev, dest):
   if len(prev.cstack)==0:
@@ -166,13 +164,13 @@ cstack3= Wstack()
 
 #mdc=move deck card, dest is of form stack_ or cstack_
 def mdc(dest):
-  if str(dest)[11]=='A':
+  if str(dest)[11] == 'A':
       if add_card_to_stack(dest, deck.deck[0])==1:
           rlc(deck.deck)
           show_cards()
       else:
           1==1
-  elif str(dest)[11]=='W':
+  elif str(dest)[11] == 'W':
       if add_card(dest, deck.deck[0])==1:
           rlc(deck.deck)
           show_cards()
@@ -219,63 +217,63 @@ def ssc(lstack):
 
 def show_cards():
  
-  print("first stack cards include: " + ssc(stack0.stack))
+  print("stack0 cards include: " + ssc(stack0.stack))
 
-  print("second stack cards include: " + ssc(stack1.stack))
+  print("stack1 cards include: " + ssc(stack1.stack))
   if len(stack1.dstack)>0:
-      print("second stack number of face down cards is " + str(len(stack1.dstack)))
+      print("stack1 number of face down cards is " + str(len(stack1.dstack)))
   else:
       1==1
 
-  print("third stack cards include: " + ssc(stack2.stack))
+  print("stack2 cards include: " + ssc(stack2.stack))
   if len(stack2.dstack)>0:
-      print("third stack number of face down cards is " + str(len(stack2.dstack)))
+      print("stack2 number of face down cards is " + str(len(stack2.dstack)))
   else:
       1==1
 
-  print("fourth stack cards include: " + ssc(stack3.stack))
+  print("stack3 cards include: " + ssc(stack3.stack))
   if len(stack3.dstack)>0:
-      print("fourth stack number of face down cards is " + str(len(stack3.dstack)))
+      print("stack3 number of face down cards is " + str(len(stack3.dstack)))
   else:
       1==1
 
-  print("fifth stack cards include: " + ssc(stack4.stack))
+  print("stack4 cards include: " + ssc(stack4.stack))
   if len(stack4.dstack)>0:
-      print("fifth stack number of face down cards is " + str(len(stack4.dstack)))
+      print("stack4 number of face down cards is " + str(len(stack4.dstack)))
   else:
       1==1
 
-  print("sixth stack cards include: " + ssc(stack5.stack))
+  print("stack5 cards include: " + ssc(stack5.stack))
   if len(stack5.dstack)>0:
-      print("sixth stack number of face down cards is " + str(len(stack5.dstack)))
+      print("stack5 number of face down cards is " + str(len(stack5.dstack)))
   else:
       1==1
 
-  print("seventh stack cards include: " + ssc(stack6.stack))
+  print("stack6 cards include: " + ssc(stack6.stack))
   if len(stack6.dstack)>0:
-      print("seventh stack number of face down cards is " + str(len(stack6.dstack)))
+      print("stack6 number of face down cards is " + str(len(stack6.dstack)))
   else:
       1==1
 
   if len(cstack0.cstack)>0:
-      print("first winning stack cards include " + ssc(cstack0.cstack))
+      print("cstack0 (winning stack) cards include: " + ssc(cstack0.cstack))
   else:
-      print("first winning stack is empty")
+      print("cstack0 (winning stack) is empty")
 
   if len(cstack1.cstack)>0:
-      print("second winning stack cards include " + ssc(cstack1.cstack))
+      print("cstack1 (winning stack) cards include: " + ssc(cstack1.cstack))
   else:
-      print("second winning stack is empty")
+      print("cstack1 (winning stack) is empty")
 
   if len(cstack2.cstack)>0:
-      print("third winning stack cards include " + ssc(cstack2.cstack))
+      print("cstack 2 (winning stack) cards include: " + ssc(cstack2.cstack))
   else:
-      print("third winning stack is empty")
+      print("cstack 2 (winning stack) is empty")
 
   if len(cstack3.cstack)>0:
-      print("fourth winning stack cards include " + ssc(cstack3.cstack))
+      print("cstack3 (winning stack) cards include: " + ssc(cstack3.cstack))
   else:
-      print("fourth winning stack is empty")
+      print("cstack3 (winning stack) is empty")
 
   if len(deck.deck) >=3:
       print("deck top three cards are " + scnof(deck.deck[0]) + " of " + str(deck.deck[0].suit) + "," + ' ' + scnof(deck.deck[1]) + " of " + str(deck.deck[1].suit) + "," + ' ' + scnof(deck.deck[2]) + " of " + str(deck.deck[2].suit))
@@ -381,4 +379,34 @@ def new_game():
 
 
 
+#commands
 
+def ndc():
+    deck.ndc()
+    show_cards()
+
+def move(prev, num_cards, dest):
+    if prev == deck:
+        if (str(dest)[11] == 'A') | (str(dest)[11] == 'W'):
+          mdc(dest)
+        else:
+            print "select a stack or cstack as the destination"
+    elif str(prev)[11] == 'A':
+        if str(dest)[11] == 'A':
+          ss(prev, prev.stack[num_cards - 1], dest)
+        elif str(dest)[11] == 'W':
+          m2cs(prev, dest)
+        else:
+            print "select a stack or cstack as the destination"
+    elif str(prev)[11] == 'W':
+        if str(dest)[11] == 'A':
+          m2s(prev, dest)
+        elif str(prev)[11] == 'W':
+          switch_cstacks(prev, dest)
+        else:
+            print "select a stack or cstack as the destination"
+    else:
+        print ('select a valid place to move the card from')
+
+def new():
+    new_game()
