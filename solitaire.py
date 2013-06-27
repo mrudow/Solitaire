@@ -186,19 +186,32 @@ def clear_pile(pile):
     while i < b:
         del pile[i]
         i=i+1
+
+#scnof=show card number or face
+def scnof(card):
+    if card.value <11:
+        return str(card.value)
+    elif card.value == 11:
+        return 'Jack'
+    elif card.value == 12:
+        return 'Queen'
+    elif card.value == 13:
+        return 'King'
+    else:
+        return 'Ace'
 #ssc= show stack's cards, lstack=cstack_.cstack or stack_.stack
 def ssc(lstack):
     i=len(lstack)-1
     a=''
     while i >= 0:
         if i > 0:
-          a= a + str(lstack[i].value)
+          a= a + scnof(lstack[i])
           a= a + ' of '
           a=a + str(lstack[i].suit)
           a= a + ', '
           i=i-1
         else:
-          a= a + str(lstack[i].value)
+          a= a + scnof(lstack[i])
           a= a + ' of '
           a=a + str(lstack[i].suit)
           i=i-1
@@ -265,11 +278,11 @@ def show_cards():
       print("fourth winning stack is empty")
 
   if len(deck.deck) >=3:
-      print("deck top three cards are " + str(deck.deck[0].value) + " of " + str(deck.deck[0].suit) + "," + ' ' + str(deck.deck[1].value) + " of " + str(deck.deck[1].suit) + "," + ' ' + str(deck.deck[2].value) + " of " + str(deck.deck[2].suit))
+      print("deck top three cards are " + scnof(deck.deck[0]) + " of " + str(deck.deck[0].suit) + "," + ' ' + scnof(deck.deck[1]) + " of " + str(deck.deck[1].suit) + "," + ' ' + scnof(deck.deck[2]) + " of " + str(deck.deck[2].suit))
   elif len(deck.deck)==2:
-      print("deck top two cards are " + str(deck.deck[0].value) + " of " + str(deck.deck[0].suit) + "," + ' ' + str(deck.deck[1].value) + " of " + str(deck.deck[1].suit))
+      print("deck top two cards are " + scnof(deck.deck[0]) + " of " + str(deck.deck[0].suit) + "," + ' ' + scnof(deck.deck[1]) + " of " + str(deck.deck[1].suit))
   elif len(deck.deck)==1:
-      print("deck card is the " + str(deck.deck[0].value ) + " of " + str(deck.deck[0].suit))
+      print("deck card is the " + scnof(deck.deck[0]) + " of " + str(deck.deck[0].suit))
   else:
       print("deck is empty")
 
