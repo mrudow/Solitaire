@@ -167,15 +167,15 @@ def mdc(dest):
   if str(dest)[11] == 'A':
       if add_card_to_stack(dest, deck.deck[0])==1:
           rlc(deck.deck)
-          show_cards()
+          return 1
       else:
-          1==1
+          1 == 1
   elif str(dest)[11] == 'W':
       if add_card(dest, deck.deck[0])==1:
           rlc(deck.deck)
-          show_cards()
+          return 1
       else:
-          1==1
+          1 == 1
 
 
 def clear_pile(pile):
@@ -389,28 +389,51 @@ def ndc():
 def move(prev, num_cards, dest):
     '''move the number of cards in num_cards from prev to dest.'''
     if prev == deck:
-        if (str(dest)[11] == 'A') | (str(dest)[11] == 'W'):
-          mdc(dest)
+        if num_cards == 1:
+            if (str(dest)[11] == 'A') | (str(dest)[11] == 'W'):
+              if mdc(dest) == 1:
+                show_cards()
+            else:
+                print ("select a stack or cstack as the destination")
+        elif num_cards == 0:
+            1==1
         else:
-            print "select a stack or cstack as the destination"
+            if (str(dest)[11] == 'A') | (str(dest)[11] == 'W'):
+              i=num_cards
+              a=0
+              while i >= 1:
+                if mdc(dest) == 1:
+                    a=a+1
+                    i=i-1
+                else:
+                    i=0
+              if a > 0:
+                show_cards()
+            else:
+                print ("select a stack or cstack as the destination")
+
     elif str(prev)[11] == 'A':
         if str(dest)[11] == 'A':
           ss(prev, prev.stack[num_cards - 1], dest)
         elif str(dest)[11] == 'W':
           m2cs(prev, dest)
         else:
-            print "select a stack or cstack as the destination"
+            print ("select a stack or cstack as the destination")
     elif str(prev)[11] == 'W':
         if str(dest)[11] == 'A':
           m2s(prev, dest)
         elif str(prev)[11] == 'W':
           switch_cstacks(prev, dest)
         else:
-            print "select a stack or cstack as the destination"
+            print ("select a stack or cstack as the destination")
     else:
         print ('select a valid place to move the card from')
 
+def show():
+    '''shows your cards'''
+    show_cards()
+
 def new():
     '''start a new game'''
-    print ("Your commands are: 1. move(prev, num_cards, dest) = move the number of cards in num_cards from prev to dest. 2. ndc() =move the top deck card to the bottom of the deck and show your cards. 3. new() = start a new game.")
+    print ("Your commands are: 1. move(prev, num_cards, dest) = move the number of cards in num_cards from prev to dest. 2. show() = shows your cards. 3. ndc() = move the top deck card to the bottom of the deck and show your cards. 4. new() = start a new game.")
     new_game()
