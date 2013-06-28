@@ -46,7 +46,7 @@ def add_card_to_stack(astack, next_card):
         print ("Try again...")
 
 #ss=switch stacks las and nex need to be of the form astack
-def ss (las, card, nex):
+def ss(las, card, nex):
     if len(las.stack)==0:
         print ("there is no card to move")
     else:
