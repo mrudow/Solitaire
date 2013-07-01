@@ -392,7 +392,7 @@ def new_game():
 
 #commands
 
-def ndc():
+def draw():
     '''move the top deck card to the bottom of the deck and show your cards'''
     deck.ndc()
     show_cards()
@@ -446,5 +446,5 @@ def show():
 
 def new():
     '''start a new game'''
-    print ("Your commands are: 1. move(prev, num_cards, dest) = move the number of cards in num_cards from prev to dest. 2. show() = shows your cards. 3. ndc() = move the top deck card to the bottom of the deck and show your cards. 4. new() = start a new game.")
+    print ("Your commands are: 1. move(prev, num_cards, dest) = move the number of cards in num_cards from prev to dest. 2. show() = shows your cards. 3. draw() = move the top deck card to the bottom of the deck and show your cards. 4. new() = start a new game.")
     new_game()
