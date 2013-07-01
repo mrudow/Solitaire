@@ -394,7 +394,7 @@ def new_game():
 
 def draw():
     '''move the top deck card to the bottom of the deck and show your cards'''
-    deck.ndc()
+    deck.next_deck_card()
     show_cards()
 
 def move(prev, num_cards, dest):

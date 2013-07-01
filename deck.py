@@ -57,8 +57,7 @@ class Deck:
 
 
 
-#ndc=next deck card
-    def ndc(self):
+    def next_deck_card(self):
       self.deck[len(self.deck)]=self.deck[0]
       del self.deck[0]
       i=0
