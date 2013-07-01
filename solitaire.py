@@ -10,6 +10,18 @@ def rlc(loc):
       del loc[i]
       i=i+1
 
+def rlc2(loc):
+    del loc[2]
+    if len(loc)<3:
+        1==1
+    else:
+        loc[2]=loc[1]
+        del loc[1]
+        loc[1]=loc[0]
+        del loc[0]
+        loc[0]=loc[len(loc)-1]
+        del loc[len(loc)-1]
+
         
 #stac of form cstack_.cstack or stack_.stack
 def move_up(stac):
@@ -165,14 +177,14 @@ cstack3= Wstack()
 #mdc=move deck card, dest is of form stack_ or cstack_
 def mdc(dest):
   if str(dest)[11] == 'A':
-      if add_card_to_stack(dest, deck.deck[0])==1:
-          rlc(deck.deck)
+      if add_card_to_stack(dest, deck.deck[2])==1:
+          rlc2(deck.deck)
           return 1
       else:
           1 == 1
   elif str(dest)[11] == 'W':
-      if add_card(dest, deck.deck[0])==1:
-          rlc(deck.deck)
+      if add_card(dest, deck.deck[2])==1:
+          rlc2(deck.deck)
           return 1
       else:
           1 == 1
