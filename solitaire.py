@@ -9,10 +9,20 @@ def reorder_location_of_cards(loc):
       del loc[i]
       i=i+1
 
+
 def shift_deck(loc):
     del loc[2]
     if len(loc)<3:
-        1==1
+        if len(loc)==2:
+            loc[2]=loc[1]
+            del loc[1]
+            loc[1]=loc[0]
+            del loc[0]
+        elif len(loc)==1:
+            loc[2]=loc[1]
+            del loc[1]
+        else:
+            1==1
     else:
         loc[2]=loc[1]
         del loc[1]
@@ -21,7 +31,9 @@ def shift_deck(loc):
         loc[0]=loc[len(loc)-1]
         del loc[len(loc)-1]
 
-        
+
+
+
 #stac of form cstack_.cstack or stack_.stack
 def move_up(stac):
   i=(len(stac) - 1)
@@ -108,6 +120,9 @@ stack3= Astack()
 stack4= Astack()
 stack5= Astack()
 stack6= Astack()
+astack = []
+for i in range(7):
+    astack.append( Astack() )
 
 def shift_down_one(astack, starting_index):
     a=(len(astack.stack) - 1)
