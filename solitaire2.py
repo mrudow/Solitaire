@@ -92,9 +92,9 @@ def switch_stacks(from_location, card, to_location):
 
 def clear_pile(pile):
     i=0
-    b=len(pile)
+    b=len(pile.stack)
     while i < b:
-        del pile[i]
+        del pile.stack[i]
         i=i+1
 
 #show card number or face
@@ -110,24 +110,42 @@ def show_card_value(card):
     else:
         return 'A'
 
-def show_stack_cards(stack):
-    if len(stack)>0:
-        i=len(stack)-1
+def show_stack_cards(pile):
+    if len(pile.stack)>0:
+        i=len(pile.stack)-1
         a='|'
         while i >= 0:
-          a= a + show_card_value(stack[i])+str(stack[i].suit[0]) + '|'
+          a= a + show_card_value(pile.stack[i])+str(pile.stack[i].suit[0]) + '|'
           i=i-1
         return a
     else:
         return ''
 
 def show_down_cards(down_stack):
-    if len(down_stack)>0:
-        i=len(down)stack)-1
+    if len(down_stack.stack)>0:
+        i=len(down_stack.stack)-1
         a=''
         while i >= 0:
             a=a + "|**"
             i=i-1
         return a
 
+def show():
+  i=0
+  for i < 7:
+    print('normal stack' + str(i) + ': ' + show_down_cards(normal_stack[i]) + show_stack_cards(normal_stack[i]))
+    i=i+1
+  i=0
+  for i < 4:
+    print('winning stack' + str(i) + ': ' + show_stack_cards(winning_stack[i]))
+    i=i+1
+  i=0
+  a=''
+  a=a + 'deck: '
+  if len(deck.deck) > 0:
+      a=a + '|'
+  for (i < 4) & (i < len(deck.deck):
+    a=a + show_card_value(deck.deck[i]) + str(deck.deck[i]) + '|'
+    i=i + 1
+  print(a)
 
