@@ -126,23 +126,6 @@ def show_down_cards(down_stack):
             i=i-1
         return a
 
-def show_cards():
-  for i in range(7):
-    print('normal stack' + str(i) + ': ' + show_down_cards(normal_stacks[i]) + show_stack_cards(normal_stacks[i]))
-    i=i+1
-  for i in range(4):
-    print('winning stack' + str(i) + ': ' + show_stack_cards(winning_stacks[i]))
-    i=i+1
-  i=0
-  a=''
-  a=a + 'deck: '
-  if len(deck.deck) > 0:
-      a=a + '|'
-  while ((i < 4) and (i < len(deck.deck))):
-    a=a + show_card_value(deck.deck[i]) + str(deck.deck[i]) + '|'
-    i=i + 1
-  print(a)
-
 def check_for_win():
   a=[0]
   for i in range(4):
@@ -190,9 +173,24 @@ def move(from_location, number_of_cards, to_locaiton):
     switch_stacks(from_location, from_location.stack[number_of_cards -1], to_location)
     check_for_win()
     
+
 def show():
   '''shows your cards'''
-  show_cards()
+  for i in range(7):
+    print('normal stack' + str(i) + ': ' + show_down_cards(normal_stacks[i]) + show_stack_cards(normal_stacks[i]))
+    i=i+1
+  for i in range(4):
+    print('winning stack' + str(i) + ': ' + show_stack_cards(winning_stacks[i]))
+    i=i+1
+  i=0
+  a=''
+  a=a + 'deck: '
+  if len(deck.deck) > 0:
+      a=a + '|'
+  while ((i < 4) and (i < len(deck.deck))):
+    a=a + show_card_value(deck.deck[i]) + str(deck.deck[i]) + '|'
+    i=i + 1
+  print(a)
 
 def draw():
   '''move the top deck card to the bottom of the deck and show your cards'''
