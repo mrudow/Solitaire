@@ -134,22 +134,6 @@ def check_for_win():
     print("You win Stop playing solitaire and get a life... just saying.")
 
 from random import shuffle
-def new_game():
-  del deck.deck
-  deck=Deck()
-  deck.fill_deck()
-  del normal_stacks
-  make_normal_stacks()
-  for i in range(7):
-    normal_stacks[i].stack.append(deck.deck.pop(0))
-    a=i
-    while a > 0:
-      normal_stacks[i].down_stack.append(deck.deck.pop(0))
-      a=a-1
-  del winning_stacks
-  make_winning_stacks()
-  show()
-
 
 def move(from_location, number_of_cards, to_locaiton):
   '''move the number of cards in num_cards from prev to dest.'''
@@ -200,5 +184,19 @@ def draw():
 def new():
   '''start a new game'''
   print ("Your commands are: 1. move(prev, num_cards, dest) = move the number of cards in num_cards from prev to dest. 2. show() = shows your cards. 3. draw() = move the top deck card to the bottom of the deck and show your cards. 4. new() = start a new game.")
-  new_game()
+  del deck.deck
+  deck=Deck()
+  deck.fill_deck()
+  del normal_stacks
+  make_normal_stacks()
+  for i in range(7):
+    normal_stacks[i].stack.append(deck.deck.pop(0))
+    a=i
+    while a > 0:
+      normal_stacks[i].down_stack.append(deck.deck.pop(0))
+      a=a-1
+  del winning_stacks
+  make_winning_stacks()
+  show()
+
 
