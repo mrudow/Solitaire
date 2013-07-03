@@ -131,12 +131,12 @@ def check_for_win():
   for i in range(4):
     a[0]=a[0]+len(winning_stacks[i].stack)
   if a[0] == 52:
-    print("You win Stop playing solitaire and get a life... just saying.")
+    print("You win. Stop playing solitaire and get a life... just saying.")
 
 from random import shuffle
 
 def move(from_location, number_of_cards, to_locaiton):
-  '''move the number of cards in num_cards from prev to dest.'''
+  '''Moves the number of cards in number_of_cards from the from_location to the to_location.'''
   if from_location.identifier == 'deck':
     if number_of_cards == 1:
       move_deck_card(to_location)
@@ -159,7 +159,7 @@ def move(from_location, number_of_cards, to_locaiton):
     
 
 def show():
-  '''shows your cards'''
+  '''Shows your cards'''
   for i in range(7):
     print('normal stack' + str(i) + ': ' + show_down_cards(normal_stacks[i]) + show_stack_cards(normal_stacks[i]))
     i=i+1
@@ -177,13 +177,13 @@ def show():
   print(a)
 
 def draw():
-  '''move the top deck card to the bottom of the deck and show your cards'''
+  '''Moves the top deck card to the bottom of the deck and shows your cards'''
   deck.next_deck_card()
   show()
 
 def new():
-  '''start a new game'''
-  print ("Your commands are: 1. move(prev, num_cards, dest) = move the number of cards in num_cards from prev to dest. 2. show() = shows your cards. 3. draw() = move the top deck card to the bottom of the deck and show your cards. 4. new() = start a new game.")
+  '''Starts a new game'''
+  print ("Your commands are: 1. move(from_location, number_of_cards, to_location) = Moves the number of cards in number_of_cards from the from_locaiton to the to_location. 2. show() = Shows your cards. 3. draw() = Move the top deck card to the bottom of the deck and shows your cards. 4. new() = Starts a new game.")
   del deck.deck
   deck=Deck()
   deck.fill_deck()
