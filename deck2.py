@@ -1,15 +1,16 @@
-from card import *
+from card2 import *
 class Deck:
-    suit=['hearts', 'diamonds', 'clubs', 'spades']
     def __init__(self):
         self.deck = []
+        self.identifier='deck'
             
-    def fill_deck(self)
+    def fill_deck(self):
         for i in range(1, 14):
           for b in range(4):
+            choose_suit=['hearts', 'diamonds', 'clubs', 'spades']
             a=''
-            a=a + str(i) + suit[b][0]
-            a=Card(i, suit[b])
+            a=a + str(i) + choose_suit[b][0]
+            a=Card(i, choose_suit[b])
             self.deck.append(a)
 
 
@@ -21,5 +22,7 @@ class Deck:
 
 
 #from random import shuffle will allow the shuffle(deck) command to be used
+from random import shuffle
 deck=Deck()
 deck.fill_deck()
+shuffle(deck.deck)

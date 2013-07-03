@@ -24,3 +24,5 @@ This is a game of solitaire to be played from the command line. To start, enter 
   iv. help(new)
     new()
       Starts a new game 
+
+Good luck!

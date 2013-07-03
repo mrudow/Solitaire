@@ -1,15 +1,14 @@
 #!/usr/bin/python
-from deck import *
+from deck2 import *
 
 class Winning_stack:
     def __init__(self):
         self.stack=[]
         self.identifier='winning stack'
-def make_winning_stacks():
-  winning_stacks=[]
-  for i in range(4):
-    winning_stacks.append(Winning_stack)
-make_winning_stacks()
+  
+winning_stacks=[]
+for i in range(4):
+  winning_stacks.append(Winning_stack())
 
 class Normal_stack:
     def __init__(self):
@@ -17,11 +16,9 @@ class Normal_stack:
         self.identifier='normal stack'
         self.down_stack=[]
 
-def make_normal_stacks():
-  normal_stacks=[]
-  for i in range(7):
-    normal_stacks.append(Normal_stack)
-make_normal_stacks()
+normal_stacks=[]
+for i in range(7):
+  normal_stacks.append(Normal_stack())
 
 def opposite_color(card1, card2):
   if (card1.suit == "spades"|"clubs") and (card2.suit == "diamonds"|"hearts"):
@@ -120,11 +117,25 @@ def show_stack_cards(pile):
 def show_down_cards(down_stack):
     if len(down_stack.stack)>0:
         i=len(down_stack.stack)-1
-        a=''
-        while i >= 0:
-            a=a + "|**"
-            i=i-1
+        a='|**'
+        a=a * i
         return a
+
+def clear_stacks(stacks_type):
+  if stacks_type[0].identifier == 'normal stack':
+    for f in range(7):
+      i=0
+      b=len(stacks_type[f].stack)
+      while i < b:
+        del stacks_type[f].stack[i]
+        i=i+1
+  else:
+    for f in range(4):
+      i=0
+      b=len(stacks_type[f].stack)
+      while i < b:
+        del stacks_type[f].stack[i]
+        i=i+1
 
 def check_for_win():
   a=[0]
@@ -171,8 +182,8 @@ def show():
   a=a + 'deck: '
   if len(deck.deck) > 0:
       a=a + '|'
-  while ((i < 4) and (i < len(deck.deck))):
-    a=a + show_card_value(deck.deck[i]) + str(deck.deck[i]) + '|'
+  while ((i < 3) and (i < len(deck.deck))):
+    a=a + show_card_value(deck.deck[i]) + str(deck.deck[i].suit[0]) + '|'
     i=i + 1
   print(a)
 
@@ -184,19 +195,15 @@ def draw():
 def new():
   '''Starts a new game'''
   print ("Your commands are: 1. move(from_location, number_of_cards, to_location) = Moves the number of cards in number_of_cards from the from_locaiton to the to_location. 2. show() = Shows your cards. 3. draw() = Move the top deck card to the bottom of the deck and shows your cards. 4. new() = Starts a new game.")
-  del deck.deck
   deck=Deck()
   deck.fill_deck()
-  del normal_stacks
-  make_normal_stacks()
+  shuffle(deck.deck)
+  clear_stacks(normal_stacks) 
   for i in range(7):
     normal_stacks[i].stack.append(deck.deck.pop(0))
     a=i
     while a > 0:
       normal_stacks[i].down_stack.append(deck.deck.pop(0))
       a=a-1
-  del winning_stacks
-  make_winning_stacks()
+  clear_stacks(winning_stacks)
   show()
-
-
