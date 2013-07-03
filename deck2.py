@@ -20,7 +20,6 @@ class Deck:
           print("there is only one card")
 
 
-#from random import shuffle
-#shuffle(deck) command can be used
-deck= Deck()
+#from random import shuffle will allow the shuffle(deck) command to be used
+deck=Deck()
 deck.fill_deck()
