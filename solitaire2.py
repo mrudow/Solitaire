@@ -5,7 +5,7 @@ class Winning_stack:
     def __init__(self):
         self.stack=[]
         self.identifier='winning stack'
-def make_winning_stacks()
+def make_winning_stacks():
   winning_stacks=[]
   for i in range(4):
     winning_stacks.append(Winning_stack)
@@ -47,14 +47,14 @@ def move_deck_card(pile):
       print("try again")
 
 def can_take_card(pile, card):
-    if pile.identifier='normal stack'
+    if pile.identifier == 'normal stack':
         if len(pile.stack)==0 and card.value==13:
           return True
         elif len(pile.stack)!=0 and (pile.stack[0].value-card.value)==1 and opposite_color(pile.stack[0], card):
           return True
         else:
           return False
-    elif pile.identifier='winning stack'
+    elif pile.identifier == 'winning stack':
       if len(pile.stack)==0 and card.value==1:
         return True
       elif len(pile.stack) > 0:
@@ -81,7 +81,7 @@ def switch_stacks(from_location, card, to_location):
             to_location.stack.insert(0, from_location.stack.pop(0))
             if len(from_location.stack)==0:
                 flip_up(from_location)
-          elif to_location.identifier='normal stack':
+          elif to_location.identifier == 'normal stack':
             i=0
             while las.stack[i].value < card.value:
               i=i+1
@@ -138,7 +138,7 @@ def show_cards():
   a=a + 'deck: '
   if len(deck.deck) > 0:
       a=a + '|'
-  for (i < 4) and (i < len(deck.deck):
+  while ((i < 4) and (i < len(deck.deck))):
     a=a + show_card_value(deck.deck[i]) + str(deck.deck[i]) + '|'
     i=i + 1
   print(a)
@@ -152,8 +152,6 @@ def check_for_win():
 
 from random import shuffle
 def new_game():
-
-new_game():
   del deck.deck
   deck=Deck()
   deck.fill_deck()
@@ -192,7 +190,7 @@ def move(from_location, number_of_cards, to_locaiton):
     switch_stacks(from_location, from_location.stack[number_of_cards -1], to_location)
     check_for_win()
     
-def show()
+def show():
   '''shows your cards'''
   show_cards()
 
