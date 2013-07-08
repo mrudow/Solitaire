@@ -115,11 +115,13 @@ def show_stack_cards(pile):
         return ''
 
 def show_down_cards(down_stack):
-    if len(down_stack.stack)>0:
-        i=len(down_stack.stack)-1
+    if len(down_stack.down_stack)>0:
+        i=len(down_stack.down_stack)
         a='|**'
         a=a * i
         return a
+    else:
+        return ''
 
 def clear_stacks(stacks_type):
   if stacks_type[0].identifier == 'normal stack':
@@ -127,14 +129,19 @@ def clear_stacks(stacks_type):
       i=0
       b=len(stacks_type[f].stack)
       while i < b:
-        del stacks_type[f].stack[i]
+        del stacks_type[f].stack[0]
         i=i+1
+      d=0
+      c=len(stacks_type[f].down_stack)
+      while d < c:
+        del stacks_type[f].down_stack[0]
+        d=d+1
   else:
     for f in range(4):
       i=0
       b=len(stacks_type[f].stack)
       while i < b:
-        del stacks_type[f].stack[i]
+        del stacks_type[f].stack[0]
         i=i+1
 
 def check_for_win():
@@ -146,7 +153,7 @@ def check_for_win():
 
 from random import shuffle
 
-def move(from_location, number_of_cards, to_locaiton):
+def move(from_location, number_of_cards, to_location):
   '''Moves the number of cards in number_of_cards from the from_location to the to_location.'''
   if from_location.identifier == 'deck':
     if number_of_cards == 1:
