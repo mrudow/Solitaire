@@ -21,9 +21,9 @@ for i in range(7):
   normal_stacks.append(Normal_stack())
 
 def opposite_color(card1, card2):
-  if (card1.suit == "spades"|"clubs") and (card2.suit == "diamonds"|"hearts"):
+  if ((card1.suit == "spades") | (card1.suit == "clubs")) and ((card2.suit == "diamonds") | (card2.suit == "hearts")):
     return True
-  elif (card1.suit == "diamonds"|"hearts") and (card2.suit == "spades"|"clubs"):
+  elif ((card1.suit == "diamonds") | (card1.suit == "hearts")) and ((card2.suit == "spades") | (card2.suit == "clubs")):
     return True
   else:
     return False
@@ -153,12 +153,26 @@ def check_for_win():
 
 from random import shuffle
 
+#variables for making the move command easier
+ns0 = normal_stacks[0]
+ns1 = normal_stacks[1]
+ns2 = normal_stacks[2]
+ns3 = normal_stacks[3]
+ns4 = normal_stacks[4]
+ns5 = normal_stacks[5]
+ns6 = normal_stacks[6]
+ws0 = winning_stacks[0]
+ws1 = winning_stacks[1]
+ws2 = winning_stacks[2]
+ws3 = winning_stacks[3]
+
 def move(from_location, number_of_cards, to_location):
   '''Moves the number of cards in number_of_cards from the from_location to the to_location.'''
   if from_location.identifier == 'deck':
     if number_of_cards == 1:
       move_deck_card(to_location)
       check_for_win()
+      show()
     else:
       i=number_of_cards - 1
       while (i >= 0):
@@ -171,9 +185,11 @@ def move(from_location, number_of_cards, to_location):
         else:
           i=-1
       check_for_win()
+      show()
   else:
     switch_stacks(from_location, from_location.stack[number_of_cards -1], to_location)
     check_for_win()
+    show()
     
 
 def show():
@@ -202,7 +218,7 @@ def draw():
 def new():
   '''Starts a new game'''
   print ("Your commands are: 1. move(from_location, number_of_cards, to_location) = Moves the number of cards in number_of_cards from the from_locaiton to the to_location. 2. show() = Shows your cards. 3. draw() = Move the top deck card to the bottom of the deck and shows your cards. 4. new() = Starts a new game.")
-  deck=Deck()
+  deck.deck = []
   deck.fill_deck()
   shuffle(deck.deck)
   clear_stacks(normal_stacks) 

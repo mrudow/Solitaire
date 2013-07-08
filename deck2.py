@@ -15,13 +15,13 @@ class Deck:
 
 
     def next_deck_card(self):
-      if len(deck) > 1:
+      if len(self.deck) > 1:
         self.deck.append(self.deck.pop(0))
       else:
           print("there is only one card")
 
 
-#from random import shuffle will allow the shuffle(deck) command to be used
+#from random import shuffle will allow the shuffle(deck_name.deck) command to be used
 from random import shuffle
 deck=Deck()
 deck.fill_deck()
