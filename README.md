@@ -1,5 +1,5 @@
 This is a game of solitaire to be played from the command line. To start, enter 'python' into the command line. Then enter 'from solitaire2 import *'. Finally, enter the 'new()' command. Your commands to play are:
-1. move(from_location, number_of_cards, to_location) = move the number of cards in number_of_cards from the from_location to the to_location. Your options for the from_location are i: deck, ii: ns# where # is replaced with a number 0-6 refering to the normal stack of that number, iii: ws# where # is replaced with a number 0-3 referring to the winning stack of that number. Your options for the to_location are i: ns#, ii: ws#.
+1. move(from_location, to_location, number_of_cards=1) = move the number of cards in number_of_cards from the from_location to the to_location. Your options for the from_location are i: deck, ii: ns# where # is replaced with a number 0-6 refering to the normal stack of that number, iii: ws# where # is replaced with a number 0-3 referring to the winning stack of that number. Your options for the to_location are i: ns#, ii: ws#. The default number of cards is 1.
 
 2. show() = shows your cards.
 

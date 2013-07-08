@@ -54,7 +54,7 @@ def can_take_card(pile, card):
       if len(pile.stack)==0 and card.value==1:
         return True
       elif len(pile.stack) > 0:
-        if (card.value-pile.stack[0].value)==1 and color(pile.stack[0]) != color(card):
+        if (card.value-pile.stack[0].value)==1 and (pile.stack[0].suit == card.suit):
           return True
       else:
         return False
@@ -169,28 +169,40 @@ ws1 = winning_stacks[1]
 ws2 = winning_stacks[2]
 ws3 = winning_stacks[3]
 
-def move(from_location, number_of_cards, to_location):
-  '''Moves the number of cards in number_of_cards (deck, ns#, or ws#) from the from_location to the to_location (ns# or ws#).'''
+def move(from_location, to_location, number_of_cards=1) :
+  '''Moves the number of cards in number_of_cards (deck, ns#, or ws#) from the from_location to the to_location (ns# or ws#). The default number of cards is 1.'''
   if from_location.identifier == 'deck':
     if number_of_cards == 1:
-      move_deck_card(to_location)
+      try:
+          move_deck_card(to_location)
+      except(IndexError):
+        print("you tried to move more cards than you have")
       check_for_win()
       show()
     else:
       i=number_of_cards - 1
       while (i >= 0):
         if len(deck.deck) >2 and can_take_card(to_location, deck.deck[2]):
-          move_deck_card(to_location)
-          i=i-1
+          try:
+            move_deck_card(to_location)
+            i=i-1
+          except(IndexError):
+            print("you tried to move more cards than you have")
         elif 2>len(deck.deck)>0 and can_take_card(to_location, deck.deck[len(deck.deck)-1]):
-          move_deck_card(to_location)
-          i=i-1
+          try:
+            move_deck_card(to_location)
+            i=i-1
+          except(IndexError):
+            print("you tried to move more cards than you have")
         else:
           i=-1
       check_for_win()
       show()
   else:
-    switch_stacks(from_location, from_location.stack[number_of_cards -1], to_location)
+    try:
+      switch_stacks(from_location, from_location.stack[number_of_cards -1], to_location)
+    except(IndexError):
+      print("you tried to move more cards than you have")
     check_for_win()
     show()
     
