@@ -20,13 +20,12 @@ normal_stacks=[]
 for i in range(7):
   normal_stacks.append(Normal_stack())
 
-def opposite_color(card1, card2):
-  if ((card1.suit == "spades") | (card1.suit == "clubs")) and ((card2.suit == "diamonds") | (card2.suit == "hearts")):
-    return True
-  elif ((card1.suit == "diamonds") | (card1.suit == "hearts")) and ((card2.suit == "spades") | (card2.suit == "clubs")):
-    return True
-  else:
-    return False
+def color(card):
+    if (card.suit == "spades") | (card.suit == "clubs"):
+        return 'black'
+    else:
+        return 'red'
+
 
 def move_deck_card(pile):
     if len(deck.deck) >= 4:
@@ -47,7 +46,7 @@ def can_take_card(pile, card):
     if pile.identifier == 'normal stack':
         if len(pile.stack)==0 and card.value==13:
           return True
-        elif len(pile.stack)!=0 and (pile.stack[0].value-card.value)==1 and opposite_color(pile.stack[0], card):
+        elif len(pile.stack)!=0 and (pile.stack[0].value-card.value)==1 and color(pile.stack[0]) != color(card):
           return True
         else:
           return False
@@ -55,7 +54,7 @@ def can_take_card(pile, card):
       if len(pile.stack)==0 and card.value==1:
         return True
       elif len(pile.stack) > 0:
-        if (card.value-pile.stack[0].value)==1 and opposite_color(pile.stack[0], card):
+        if (card.value-pile.stack[0].value)==1 and color(pile.stack[0]) != color(card):
           return True
       else:
         return False
@@ -80,7 +79,7 @@ def switch_stacks(from_location, card, to_location):
                 flip_up(from_location)
           elif to_location.identifier == 'normal stack':
             i=0
-            while las.stack[i].value < card.value:
+            while from_location.stack[i].value < card.value:
               i=i+1
             while i >= 0:
                 to_location.stack.insert(0, from_location.stack.pop(i))
@@ -108,8 +107,12 @@ def show_stack_cards(pile):
         i=len(pile.stack)-1
         a='|'
         while i >= 0:
-          a= a + show_card_value(pile.stack[i])+str(pile.stack[i].suit[0]) + '|'
-          i=i-1
+          if color(pile.stack[i])=='black':
+            a=a + '\033[1;30m' + show_card_value(pile.stack[i]) + str(pile.stack[i].suit[0]) + '\033[1;m' + '|'
+            i=i-1
+          else:
+            a=a + '\033[1;31m' + show_card_value(pile.stack[i]) + str(pile.stack[i].suit[0]) + '\033[1;m' + '|'
+            i=i-1
         return a
     else:
         return ''
@@ -167,7 +170,7 @@ ws2 = winning_stacks[2]
 ws3 = winning_stacks[3]
 
 def move(from_location, number_of_cards, to_location):
-  '''Moves the number of cards in number_of_cards from the from_location to the to_location.'''
+  '''Moves the number of cards in number_of_cards (deck, ns#, or ws#) from the from_location to the to_location (ns# or ws#).'''
   if from_location.identifier == 'deck':
     if number_of_cards == 1:
       move_deck_card(to_location)
@@ -206,8 +209,13 @@ def show():
   if len(deck.deck) > 0:
       a=a + '|'
   while ((i < 3) and (i < len(deck.deck))):
-    a=a + show_card_value(deck.deck[i]) + str(deck.deck[i].suit[0]) + '|'
-    i=i + 1
+      if color(deck.deck[i])=='black':
+          a=a + '\033[1;30m' + show_card_value(deck.deck[i]) + str(deck.deck[i].suit[0]) + '\033[1;m' + '|'
+          i=i + 1
+      else:
+          a=a + '\033[1;31m' + show_card_value(deck.deck[i]) + str(deck.deck[i].suit[0]) + '\033[1;m' + '|'
+          i=i + 1
+
   print(a)
 
 def draw():
