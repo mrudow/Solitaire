@@ -21,7 +21,7 @@ for i in range(7):
   normal_stacks.append(Normal_stack())
 
 def color(card):
-    if (card.suit == "spades") | (card.suit == "clubs"):
+    if (card.suit == "Spades") | (card.suit == "Clubs"):
         return 'black'
     else:
         return 'red'

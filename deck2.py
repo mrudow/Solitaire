@@ -7,7 +7,7 @@ class Deck:
     def fill_deck(self):
         for i in range(1, 14):
           for b in range(4):
-            choose_suit=['hearts', 'diamonds', 'clubs', 'spades']
+            choose_suit=['Hearts', 'Diamonds', 'Clubs', 'Spades']
             a=''
             a=a + str(i) + choose_suit[b][0]
             a=Card(i, choose_suit[b])
