@@ -148,11 +148,18 @@ def clear_stacks(stacks_type):
         i=i+1
 
 def check_for_win():
-  a=[0]
+  a=0
   for i in range(4):
-    a[0]=a[0]+len(winning_stacks[i].stack)
-  if a[0] == 52:
+    a=a+len(winning_stacks[i].stack)
+  if a == 52:
     print("You win. Stop playing solitaire and get a life... just saying.")
+  l=0
+  for i in range(7):
+    l=l+len(normal_stacks[i].stack)
+  for i in range(4):
+    l=l+len(winning_stacks[i].stack)
+  if l==52:
+    print("You are set up to win")
 
 from random import shuffle
 
